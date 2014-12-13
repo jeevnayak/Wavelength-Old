@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132923121A3C0CDA000BA423 /* AppDelegate.swift */; };
-		132923151A3C0CDA000BA423 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132923141A3C0CDA000BA423 /* ViewController.swift */; };
 		132923181A3C0CDA000BA423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 132923161A3C0CDA000BA423 /* Main.storyboard */; };
 		1329231A1A3C0CDA000BA423 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132923191A3C0CDA000BA423 /* Images.xcassets */; };
 		1329231D1A3C0CDA000BA423 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1329231B1A3C0CDA000BA423 /* LaunchScreen.xib */; };
@@ -30,6 +29,7 @@
 		132923531A3C1A24000BA423 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923521A3C1A24000BA423 /* FacebookSDK.framework */; };
 		132923571A3C1F33000BA423 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923551A3C1F33000BA423 /* Crashlytics.framework */; };
 		132923581A3C1F33000BA423 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923561A3C1F33000BA423 /* Fabric.framework */; };
+		1329235B1A3C222F000BA423 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1329235A1A3C222F000BA423 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,6 @@
 		1329230D1A3C0CDA000BA423 /* Wavelength.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wavelength.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		132923111A3C0CDA000BA423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		132923121A3C0CDA000BA423 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		132923141A3C0CDA000BA423 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		132923171A3C0CDA000BA423 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		132923191A3C0CDA000BA423 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1329231C1A3C0CDA000BA423 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		132923521A3C1A24000BA423 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		132923551A3C1F33000BA423 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		132923561A3C1F33000BA423 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		1329235A1A3C222F000BA423 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +130,8 @@
 		1329230F1A3C0CDA000BA423 /* Wavelength */ = {
 			isa = PBXGroup;
 			children = (
+				132923591A3C2219000BA423 /* View Controllers */,
 				132923121A3C0CDA000BA423 /* AppDelegate.swift */,
-				132923141A3C0CDA000BA423 /* ViewController.swift */,
 				132923161A3C0CDA000BA423 /* Main.storyboard */,
 				132923191A3C0CDA000BA423 /* Images.xcassets */,
 				1329231B1A3C0CDA000BA423 /* LaunchScreen.xib */,
@@ -188,6 +188,14 @@
 				132923341A3C1582000BA423 /* Parse.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		132923591A3C2219000BA423 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1329235A1A3C222F000BA423 /* LoginViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				132923151A3C0CDA000BA423 /* ViewController.swift in Sources */,
+				1329235B1A3C222F000BA423 /* LoginViewController.swift in Sources */,
 				132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
