@@ -28,6 +28,8 @@
 		1329234C1A3C15D7000BA423 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1329234B1A3C15D7000BA423 /* libsqlite3.dylib */; };
 		1329234E1A3C15ED000BA423 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1329234D1A3C15ED000BA423 /* ParseFacebookUtils.framework */; };
 		132923531A3C1A24000BA423 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923521A3C1A24000BA423 /* FacebookSDK.framework */; };
+		132923571A3C1F33000BA423 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923551A3C1F33000BA423 /* Crashlytics.framework */; };
+		132923581A3C1F33000BA423 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923561A3C1F33000BA423 /* Fabric.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		1329234D1A3C15ED000BA423 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		1329234F1A3C168E000BA423 /* Wavelength-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wavelength-Bridging-Header.h"; sourceTree = "<group>"; };
 		132923521A3C1A24000BA423 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		132923551A3C1F33000BA423 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		132923561A3C1F33000BA423 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,10 +88,12 @@
 				132923401A3C15B6000BA423 /* MobileCoreServices.framework in Frameworks */,
 				1329233E1A3C15B1000BA423 /* CoreLocation.framework in Frameworks */,
 				1329233C1A3C15AD000BA423 /* CoreGraphics.framework in Frameworks */,
+				132923571A3C1F33000BA423 /* Crashlytics.framework in Frameworks */,
 				1329233A1A3C15A9000BA423 /* CFNetwork.framework in Frameworks */,
 				132923531A3C1A24000BA423 /* FacebookSDK.framework in Frameworks */,
 				132923381A3C15A3000BA423 /* AudioToolbox.framework in Frameworks */,
 				132923361A3C1582000BA423 /* Parse.framework in Frameworks */,
+				132923581A3C1F33000BA423 /* Fabric.framework in Frameworks */,
 				132923351A3C1582000BA423 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,6 +169,8 @@
 		132923321A3C14C1000BA423 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				132923551A3C1F33000BA423 /* Crashlytics.framework */,
+				132923561A3C1F33000BA423 /* Fabric.framework */,
 				132923521A3C1A24000BA423 /* FacebookSDK.framework */,
 				1329234D1A3C15ED000BA423 /* ParseFacebookUtils.framework */,
 				1329234B1A3C15D7000BA423 /* libsqlite3.dylib */,
@@ -192,6 +200,7 @@
 				132923091A3C0CDA000BA423 /* Sources */,
 				1329230A1A3C0CDA000BA423 /* Frameworks */,
 				1329230B1A3C0CDA000BA423 /* Resources */,
+				132923541A3C1EFC000BA423 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -276,6 +285,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		132923541A3C1EFC000BA423 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run ec9af2c54f8a85adfc14ae81b313d8919dda2c2d e148f6d1095b84d27440232153cfeb27374fef4972cab13c6fcb1d5e464306b4";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		132923091A3C0CDA000BA423 /* Sources */ = {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaultACL.setPublicReadAccess(true)
         defaultACL.setPublicWriteAccess(true)
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+
+        Fabric.with([Crashlytics()])
 
         return true
     }
