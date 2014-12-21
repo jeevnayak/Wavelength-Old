@@ -34,6 +34,7 @@
 		133200531A4642F500713DD5 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200521A4642F500713DD5 /* Round.swift */; };
 		133200551A464C6F00713DD5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200541A464C6F00713DD5 /* MainViewController.swift */; };
 		133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200561A465A9200713DD5 /* NewGameViewController.swift */; };
+		1332005C1A4661D800713DD5 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1332005B1A4661D800713DD5 /* GameCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		133200521A4642F500713DD5 /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		133200541A464C6F00713DD5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		133200561A465A9200713DD5 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
+		1332005B1A4661D800713DD5 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		1329230F1A3C0CDA000BA423 /* Wavelength */ = {
 			isa = PBXGroup;
 			children = (
+				133200581A465FD500713DD5 /* Views */,
 				1332004F1A4642AF00713DD5 /* Models */,
 				132923591A3C2219000BA423 /* View Controllers */,
 				132923121A3C0CDA000BA423 /* AppDelegate.swift */,
@@ -216,6 +219,14 @@
 				133200521A4642F500713DD5 /* Round.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		133200581A465FD500713DD5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1332005B1A4661D800713DD5 /* GameCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +352,7 @@
 				132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */,
 				133200551A464C6F00713DD5 /* MainViewController.swift in Sources */,
 				133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */,
+				1332005C1A4661D800713DD5 /* GameCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

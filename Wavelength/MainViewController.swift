@@ -63,7 +63,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as GameCell
 
         var game: Game
         if indexPath.section == 0 {
@@ -71,12 +71,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             game = waitingGames[indexPath.row]
         }
-        if game.player1.objectId == PFUser.currentUser().objectId {
-            cell.textLabel?.text = game.player2Name
-        } else {
-            cell.textLabel?.text = game.player1Name
-        }
-        cell.detailTextLabel?.text = "Round \(game.currentRoundIndex + 1)"
+        cell.game = game
 
         return cell
     }
