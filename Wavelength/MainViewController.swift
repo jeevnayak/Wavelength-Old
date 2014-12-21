@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FBFriendPickerDelegate {
+class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FBFriendPickerDelegate {
 
-    @IBOutlet weak var gamesTableView: UITableView!
+    @IBOutlet weak var gamesCollectionView: UICollectionView!
 
     var actionableGames: [Game]!
     var waitingGames: [Game]!
@@ -19,8 +19,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        gamesTableView.dataSource = self
-        gamesTableView.delegate = self
+        gamesCollectionView.dataSource = self
+        gamesCollectionView.delegate = self
 
         reloadGames()
     }
@@ -32,13 +32,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
-    // MARK: UITableViewDataSource
+    // MARK: UICollectionViewDataSource
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        if let waitingGames = waitingGames {
+            if waitingGames.count > 0 {
+                return 2
+            }
+        }
+
+        return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             if let games = actionableGames {
                 return games.count
@@ -46,24 +52,25 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 return 0
             }
         } else {
-            if let games = waitingGames {
-                return games.count
-            } else {
-                return 0
-            }
+            return waitingGames.count
         }
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Your turn"
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        assert(kind == UICollectionElementKindSectionHeader, "all supplementary views should be headers")
+
+        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "GameListHeaderView", forIndexPath: indexPath) as GameListHeaderView
+        if indexPath.section == 0 {
+            headerView.turnLabel.text = "YOUR TURN"
         } else {
-            return "Their turn"
+            headerView.turnLabel.text = "THEIR TURN"
         }
+
+        return headerView
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as GameCell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GameCell", forIndexPath: indexPath) as GameCell
 
         var game: Game
         if indexPath.section == 0 {
@@ -76,9 +83,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
 
-    // MARK: UITableViewDelegate
+    // MARK: UICollectionViewDelegateFlowLayout
 
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width, height: 30)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width, height: 60)
+    }
+
+    func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return (indexPath.section == 0)
     }
 
@@ -153,7 +168,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.opponentFbIds.append(game.player1FbId)
                 }
             }
-            self.gamesTableView.reloadData()
+            self.gamesCollectionView.reloadData()
         })
     }
 }

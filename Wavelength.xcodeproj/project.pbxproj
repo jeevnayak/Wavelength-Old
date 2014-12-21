@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1307C51D1A46992F00429722 /* GameListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307C51C1A46992F00429722 /* GameListHeaderView.swift */; };
 		132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132923121A3C0CDA000BA423 /* AppDelegate.swift */; };
 		132923181A3C0CDA000BA423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 132923161A3C0CDA000BA423 /* Main.storyboard */; };
 		1329231A1A3C0CDA000BA423 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132923191A3C0CDA000BA423 /* Images.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1307C51C1A46992F00429722 /* GameListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListHeaderView.swift; sourceTree = "<group>"; };
 		1329230D1A3C0CDA000BA423 /* Wavelength.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wavelength.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		132923111A3C0CDA000BA423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		132923121A3C0CDA000BA423 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				1332005B1A4661D800713DD5 /* GameCell.swift */,
+				1307C51C1A46992F00429722 /* GameListHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				133200531A4642F500713DD5 /* Round.swift in Sources */,
 				132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */,
 				133200551A464C6F00713DD5 /* MainViewController.swift in Sources */,
+				1307C51D1A46992F00429722 /* GameListHeaderView.swift in Sources */,
 				133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */,
 				1332005C1A4661D800713DD5 /* GameCell.swift in Sources */,
 			);

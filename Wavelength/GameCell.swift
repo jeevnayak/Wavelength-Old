@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-class GameCell : UITableViewCell {
+class GameCell : UICollectionViewCell {
 
     @IBOutlet weak var opponentProfilePictureView: FBProfilePictureView!
     @IBOutlet weak var opponentNameLabel: UILabel!
