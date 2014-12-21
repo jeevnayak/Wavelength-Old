@@ -33,6 +33,7 @@
 		133200511A4642C400713DD5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200501A4642C400713DD5 /* Game.swift */; };
 		133200531A4642F500713DD5 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200521A4642F500713DD5 /* Round.swift */; };
 		133200551A464C6F00713DD5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200541A464C6F00713DD5 /* MainViewController.swift */; };
+		133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200561A465A9200713DD5 /* NewGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		133200501A4642C400713DD5 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		133200521A4642F500713DD5 /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		133200541A464C6F00713DD5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		133200561A465A9200713DD5 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 			children = (
 				1329235A1A3C222F000BA423 /* LoginViewController.swift */,
 				133200541A464C6F00713DD5 /* MainViewController.swift */,
+				133200561A465A9200713DD5 /* NewGameViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				133200531A4642F500713DD5 /* Round.swift in Sources */,
 				132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */,
 				133200551A464C6F00713DD5 /* MainViewController.swift in Sources */,
+				133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,11 +84,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMW-yu-TAh">
+                                <rect key="frame" x="89" y="30" width="76" height="30"/>
+                                <state key="normal" title="New Game">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="faA-mj-5Uf" kind="presentation" identifier="PresentNewGameView" id="KgK-XU-bwn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7i3-Ve-OhC" firstAttribute="leading" secondItem="RsG-RN-Ang" secondAttribute="leadingMargin" constant="10" id="7uV-Ts-fTA"/>
+                            <constraint firstItem="7i3-Ve-OhC" firstAttribute="centerY" secondItem="QMW-yu-TAh" secondAttribute="centerY" id="Bys-At-xVa"/>
                             <constraint firstItem="7i3-Ve-OhC" firstAttribute="top" secondItem="ZqA-Ob-8EG" secondAttribute="bottom" constant="10" id="VCB-Ih-7Xt"/>
+                            <constraint firstItem="QMW-yu-TAh" firstAttribute="leading" secondItem="7i3-Ve-OhC" secondAttribute="trailing" constant="10" id="WOH-BX-ar9"/>
                             <constraint firstItem="1nz-ad-cTm" firstAttribute="top" secondItem="7i3-Ve-OhC" secondAttribute="bottom" constant="10" id="XLM-wf-KTd"/>
                             <constraint firstItem="1nz-ad-cTm" firstAttribute="leading" secondItem="RsG-RN-Ang" secondAttribute="leadingMargin" id="dK3-Eq-upB"/>
                             <constraint firstItem="y1e-4H-7pB" firstAttribute="top" secondItem="1nz-ad-cTm" secondAttribute="bottom" id="oIT-a9-iHL"/>
@@ -102,6 +113,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hk1-fA-RJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="460" y="1066"/>
+        </scene>
+        <!--New Game View Controller-->
+        <scene sceneID="G0F-0W-W3r">
+            <objects>
+                <viewController storyboardIdentifier="NewGameViewController" id="faA-mj-5Uf" customClass="NewGameViewController" customModule="Wavelength" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cmC-sR-EHT"/>
+                        <viewControllerLayoutGuide type="bottom" id="thV-X3-ieq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t2r-cJ-Pzy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tOX-47-rk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266" y="1536"/>
         </scene>
     </scenes>
 </document>

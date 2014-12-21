@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FBFriendPickerDelegate {
 
     @IBOutlet weak var gamesTableView: UITableView!
 
@@ -23,6 +23,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         gamesTableView.delegate = self
 
         reloadGames()
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PresentNewGameView" {
+            let vc = segue.destinationViewController as NewGameViewController
+            vc.delegate = self
+        }
     }
 
     // MARK: UITableViewDataSource
@@ -78,6 +85,50 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return (indexPath.section == 0)
+    }
+
+    // MARK: FBFriendPickerDelegate
+
+    func facebookViewControllerCancelWasPressed(sender: AnyObject!) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func facebookViewControllerDoneWasPressed(sender: AnyObject!) {
+        let vc = sender as NewGameViewController
+        assert(vc.selection.count == 1, "must have selected exactly one fb friend")
+        let friendFbId = vc.selection[0]["id"]
+
+        let query = PFUser.query()
+        query.whereKey("fbId", equalTo: friendFbId)
+        query.getFirstObjectInBackgroundWithBlock { (object, error) -> Void in
+            if error == nil {
+                let game = Game()
+                game.player1 = PFUser.currentUser()
+                game.player1Name = game.player1.objectForKey("name") as String
+                game.player1FbId = game.player1.objectForKey("fbId") as String
+                game.player2 = object as PFUser
+                game.player2Name = game.player2.objectForKey("name") as String
+                game.player2FbId = game.player2.objectForKey("fbId") as String
+                game.currentRoundIndex = 0
+                game.currentPlayer = PFUser.currentUser()
+                game.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+                    if succeeded {
+                        Round.newRoundInGame(game, index: 0, block: { (newRound) -> Void in
+                            self.actionableGames.append(game)
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        })
+                    }
+                }
+            }
+        }
+    }
+
+    func friendPickerViewController(friendPicker: FBFriendPickerViewController!, shouldIncludeUser user: FBGraphUser!) -> Bool {
+        if let opponentFbIds = opponentFbIds {
+            return !contains(opponentFbIds, user.objectID)
+        } else {
+            return true
+        }
     }
 
     // MARK: event handlers
