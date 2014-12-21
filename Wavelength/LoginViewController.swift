@@ -6,22 +6,7 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-import Foundation
-
 class LoginViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if PFUser.currentUser() != nil && PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()) {
-            NSLog("Already logged in")
-            // TODO(rajeev): show main view
-        }
-    }
 
     @IBAction func onLoginButtonTap(sender: AnyObject) {
         let permissions = ["public_profile", "user_friends", "email"]
@@ -39,8 +24,13 @@ class LoginViewController: UIViewController {
                         PFUser.currentUser().saveInBackgroundWithTarget(nil, selector: nil)
                     }
                 })
-                NSLog("Facebook login successful")
-                // TODO(rajeev): show main view
+
+                let rootVC = UIApplication.sharedApplication().delegate?.window??.rootViewController
+                let mainVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateInitialViewController() as? UIViewController
+                UIView.transitionFromView(rootVC!.view, toView: mainVC!.view, duration: 1, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: { (finished) -> Void in
+                    let appDelegate = UIApplication.sharedApplication().delegate
+                    appDelegate?.window??.rootViewController = mainVC
+                })
             }
         })
     }

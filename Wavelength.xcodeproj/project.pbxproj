@@ -30,6 +30,9 @@
 		132923571A3C1F33000BA423 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923551A3C1F33000BA423 /* Crashlytics.framework */; };
 		132923581A3C1F33000BA423 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923561A3C1F33000BA423 /* Fabric.framework */; };
 		1329235B1A3C222F000BA423 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1329235A1A3C222F000BA423 /* LoginViewController.swift */; };
+		133200511A4642C400713DD5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200501A4642C400713DD5 /* Game.swift */; };
+		133200531A4642F500713DD5 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200521A4642F500713DD5 /* Round.swift */; };
+		133200551A464C6F00713DD5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200541A464C6F00713DD5 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		132923551A3C1F33000BA423 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		132923561A3C1F33000BA423 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		1329235A1A3C222F000BA423 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		133200501A4642C400713DD5 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		133200521A4642F500713DD5 /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
+		133200541A464C6F00713DD5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 		1329230F1A3C0CDA000BA423 /* Wavelength */ = {
 			isa = PBXGroup;
 			children = (
+				1332004F1A4642AF00713DD5 /* Models */,
 				132923591A3C2219000BA423 /* View Controllers */,
 				132923121A3C0CDA000BA423 /* AppDelegate.swift */,
 				132923161A3C0CDA000BA423 /* Main.storyboard */,
@@ -194,8 +201,18 @@
 			isa = PBXGroup;
 			children = (
 				1329235A1A3C222F000BA423 /* LoginViewController.swift */,
+				133200541A464C6F00713DD5 /* MainViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		1332004F1A4642AF00713DD5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				133200501A4642C400713DD5 /* Game.swift */,
+				133200521A4642F500713DD5 /* Round.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,7 +333,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1329235B1A3C222F000BA423 /* LoginViewController.swift in Sources */,
+				133200511A4642C400713DD5 /* Game.swift in Sources */,
+				133200531A4642F500713DD5 /* Round.swift in Sources */,
 				132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */,
+				133200551A464C6F00713DD5 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +543,7 @@
 				1329232E1A3C0CDA000BA423 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1329232F1A3C0CDA000BA423 /* Build configuration list for PBXNativeTarget "WavelengthTests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +552,7 @@
 				132923311A3C0CDA000BA423 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

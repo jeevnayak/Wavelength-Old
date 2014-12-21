@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId("aE1CDsJvsK14kINDb1Qv4dwDiW6pMif7Aqu5QEQZ", clientKey: "4I4CbmCZK0P6PNrkAnqROM2qwqzNCs2OKAPGbXTB")
         PFFacebookUtils.initializeFacebook()
@@ -27,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
 
         Fabric.with([Crashlytics()])
+
+        if PFUser.currentUser() != nil && PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()) {
+            window?.rootViewController = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateInitialViewController() as? UIViewController;
+        } else {
+            window?.rootViewController = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("LoginViewController") as? UIViewController;
+        }
 
         return true
     }

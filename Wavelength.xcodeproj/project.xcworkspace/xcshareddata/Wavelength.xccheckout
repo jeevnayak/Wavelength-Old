@@ -10,14 +10,14 @@
 	<string>Wavelength</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0A4C8FF004E391E1E2C71EE576B736601C931700</key>
+		<key>7678E04294A216A14E3E75ED30BE98A3D9991E91</key>
 		<string>https://github.com/jeevnayak/Wavelength.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Wavelength.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0A4C8FF004E391E1E2C71EE576B736601C931700</key>
+		<key>7678E04294A216A14E3E75ED30BE98A3D9991E91</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0A4C8FF004E391E1E2C71EE576B736601C931700</string>
+	<string>7678E04294A216A14E3E75ED30BE98A3D9991E91</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0A4C8FF004E391E1E2C71EE576B736601C931700</string>
+			<string>7678E04294A216A14E3E75ED30BE98A3D9991E91</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Wavelength</string>
 		</dict>
