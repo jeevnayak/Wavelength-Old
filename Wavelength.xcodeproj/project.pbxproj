@@ -27,7 +27,6 @@
 		1329234A1A3C15D1000BA423 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923491A3C15D1000BA423 /* libz.dylib */; };
 		1329234C1A3C15D7000BA423 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1329234B1A3C15D7000BA423 /* libsqlite3.dylib */; };
 		1329234E1A3C15ED000BA423 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1329234D1A3C15ED000BA423 /* ParseFacebookUtils.framework */; };
-		132923531A3C1A24000BA423 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923521A3C1A24000BA423 /* FacebookSDK.framework */; };
 		132923571A3C1F33000BA423 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923551A3C1F33000BA423 /* Crashlytics.framework */; };
 		132923581A3C1F33000BA423 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132923561A3C1F33000BA423 /* Fabric.framework */; };
 		1329235B1A3C222F000BA423 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1329235A1A3C222F000BA423 /* LoginViewController.swift */; };
@@ -36,6 +35,9 @@
 		133200551A464C6F00713DD5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200541A464C6F00713DD5 /* MainViewController.swift */; };
 		133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200561A465A9200713DD5 /* NewGameViewController.swift */; };
 		1332005C1A4661D800713DD5 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1332005B1A4661D800713DD5 /* GameCell.swift */; };
+		2197AB841A47FC7500C5777E /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2197AB821A47FC7500C5777E /* Montserrat-Bold.ttf */; };
+		2197AB851A47FC7500C5777E /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2197AB831A47FC7500C5777E /* Montserrat-Regular.ttf */; };
+		2197AB871A47FD5500C5777E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2197AB861A47FD5500C5777E /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +76,6 @@
 		1329234B1A3C15D7000BA423 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1329234D1A3C15ED000BA423 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		1329234F1A3C168E000BA423 /* Wavelength-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wavelength-Bridging-Header.h"; sourceTree = "<group>"; };
-		132923521A3C1A24000BA423 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		132923551A3C1F33000BA423 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		132923561A3C1F33000BA423 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		1329235A1A3C222F000BA423 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +84,9 @@
 		133200541A464C6F00713DD5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		133200561A465A9200713DD5 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		1332005B1A4661D800713DD5 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		2197AB821A47FC7500C5777E /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		2197AB831A47FC7500C5777E /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		2197AB861A47FD5500C5777E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 				1329234A1A3C15D1000BA423 /* libz.dylib in Frameworks */,
 				132923481A3C15CA000BA423 /* SystemConfiguration.framework in Frameworks */,
 				132923461A3C15C6000BA423 /* StoreKit.framework in Frameworks */,
+				2197AB871A47FD5500C5777E /* FacebookSDK.framework in Frameworks */,
 				132923441A3C15C1000BA423 /* Security.framework in Frameworks */,
 				132923421A3C15BD000BA423 /* QuartzCore.framework in Frameworks */,
 				132923401A3C15B6000BA423 /* MobileCoreServices.framework in Frameworks */,
@@ -102,7 +107,6 @@
 				1329233C1A3C15AD000BA423 /* CoreGraphics.framework in Frameworks */,
 				132923571A3C1F33000BA423 /* Crashlytics.framework in Frameworks */,
 				1329233A1A3C15A9000BA423 /* CFNetwork.framework in Frameworks */,
-				132923531A3C1A24000BA423 /* FacebookSDK.framework in Frameworks */,
 				132923381A3C15A3000BA423 /* AudioToolbox.framework in Frameworks */,
 				132923361A3C1582000BA423 /* Parse.framework in Frameworks */,
 				132923581A3C1F33000BA423 /* Fabric.framework in Frameworks */,
@@ -142,6 +146,7 @@
 		1329230F1A3C0CDA000BA423 /* Wavelength */ = {
 			isa = PBXGroup;
 			children = (
+				2197AB801A47FC5000C5777E /* Resources */,
 				133200581A465FD500713DD5 /* Views */,
 				1332004F1A4642AF00713DD5 /* Models */,
 				132923591A3C2219000BA423 /* View Controllers */,
@@ -185,7 +190,7 @@
 			children = (
 				132923551A3C1F33000BA423 /* Crashlytics.framework */,
 				132923561A3C1F33000BA423 /* Fabric.framework */,
-				132923521A3C1A24000BA423 /* FacebookSDK.framework */,
+				2197AB861A47FD5500C5777E /* FacebookSDK.framework */,
 				1329234D1A3C15ED000BA423 /* ParseFacebookUtils.framework */,
 				1329234B1A3C15D7000BA423 /* libsqlite3.dylib */,
 				132923491A3C15D1000BA423 /* libz.dylib */,
@@ -230,6 +235,23 @@
 				1307C51C1A46992F00429722 /* GameListHeaderView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		2197AB801A47FC5000C5777E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2197AB811A47FC5C00C5777E /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2197AB811A47FC5C00C5777E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2197AB821A47FC7500C5777E /* Montserrat-Bold.ttf */,
+				2197AB831A47FC7500C5777E /* Montserrat-Regular.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,8 +335,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2197AB841A47FC7500C5777E /* Montserrat-Bold.ttf in Resources */,
 				132923181A3C0CDA000BA423 /* Main.storyboard in Resources */,
 				1329231D1A3C0CDA000BA423 /* LaunchScreen.xib in Resources */,
+				2197AB851A47FC7500C5777E /* Montserrat-Regular.ttf in Resources */,
 				1329231A1A3C0CDA000BA423 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +508,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/jeev/Documents/FacebookSDK,
+					/Users/seanyliu/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Wavelength/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -502,6 +527,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/jeev/Documents/FacebookSDK,
+					/Users/seanyliu/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Wavelength/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
