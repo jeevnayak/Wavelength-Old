@@ -8,8 +8,11 @@
 
 class GameCell : UICollectionViewCell {
 
+    @IBOutlet weak var contentContainer: UIView!
     @IBOutlet weak var opponentProfilePictureView: FBProfilePictureView!
     @IBOutlet weak var opponentNameLabel: UILabel!
+    @IBOutlet weak var currentStreakLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
 
     var game: Game! {
         didSet {
@@ -25,5 +28,13 @@ class GameCell : UICollectionViewCell {
             opponentProfilePictureView.profileID = game.player1FbId
             opponentNameLabel.text = game.player1Name.uppercaseString
         }
+    }
+
+    func highlight() {
+        contentContainer.backgroundColor = UIColor.lightGrayColor()
+    }
+
+    func unhighlight() {
+        contentContainer.backgroundColor = UIColor.whiteColor()
     }
 }

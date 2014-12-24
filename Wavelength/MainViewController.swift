@@ -45,15 +45,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            if let games = actionableGames {
-                return games.count
-            } else {
-                return 0
-            }
-        } else {
-            return waitingGames.count
-        }
+        return numberOfItemsInSection(section)
     }
 
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -62,8 +54,12 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "GameListHeaderView", forIndexPath: indexPath) as GameListHeaderView
         if indexPath.section == 0 {
             headerView.turnLabel.text = "YOUR TURN"
+            headerView.currentStreakLabel.hidden = (actionableGames == nil) || (actionableGames.count == 0)
+            headerView.levelLabel.hidden = (actionableGames == nil) || (actionableGames.count == 0)
         } else {
             headerView.turnLabel.text = "THEIR TURN"
+            headerView.currentStreakLabel.hidden = false
+            headerView.levelLabel.hidden = false
         }
 
         return headerView
@@ -86,15 +82,30 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     // MARK: UICollectionViewDelegateFlowLayout
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: 30)
+        return CGSize(width: collectionView.bounds.size.width, height: 24)
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: 60)
+        var height = CGFloat(61)
+        if indexPath.row == numberOfItemsInSection(indexPath.section) - 1 {
+            // last item in the section shouldn't have a bottom divider
+            height = CGFloat(60)
+        }
+        return CGSize(width: collectionView.bounds.size.width, height: height)
     }
 
     func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return (indexPath.section == 0)
+    }
+
+    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as GameCell
+        cell.highlight()
+    }
+
+    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as GameCell
+        cell.unhighlight()
     }
 
     // MARK: FBFriendPickerDelegate
@@ -170,5 +181,17 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             self.gamesCollectionView.reloadData()
         })
+    }
+
+    func numberOfItemsInSection(section: Int) -> Int {
+        if section == 0 {
+            if let games = actionableGames {
+                return games.count
+            } else {
+                return 0
+            }
+        } else {
+            return waitingGames.count
+        }
     }
 }

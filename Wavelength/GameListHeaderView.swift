@@ -9,4 +9,6 @@
 class GameListHeaderView : UICollectionReusableView {
 
     @IBOutlet weak var turnLabel: UILabel!
+    @IBOutlet weak var currentStreakLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
 }
