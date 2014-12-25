@@ -6,7 +6,13 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
+protocol MenuDelegate {
+    func menuBackButtonTap(sender: AnyObject!)
+}
+
 class MenuViewController: UIViewController {
+
+    var delegate: MenuDelegate?
 
     @IBAction func onLogoutButtonTap(sender: AnyObject) {
         PFUser.logOut()
@@ -17,5 +23,9 @@ class MenuViewController: UIViewController {
             let appDelegate = UIApplication.sharedApplication().delegate
             appDelegate?.window??.rootViewController = loginVC
         })
+    }
+
+    @IBAction func onBackButtonTap(sender: AnyObject) {
+        delegate?.menuBackButtonTap(self)
     }
 }

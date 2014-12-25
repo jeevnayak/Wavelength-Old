@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GameDelegate, FBFriendPickerDelegate {
+class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GameDelegate, MenuDelegate, FBFriendPickerDelegate {
 
     @IBOutlet weak var gamesCollectionView: UICollectionView!
 
@@ -33,6 +33,9 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
             let selectedIndexPath = selectedIndexPaths[0] as NSIndexPath
             assert(selectedIndexPath.section == 0, "should only be able to select actionable games")
             vc.game = actionableGames[selectedIndexPath.row]
+            vc.delegate = self
+        } else if segue.identifier == "PresentMenuView" {
+            let vc = segue.destinationViewController as MenuViewController
             vc.delegate = self
         } else if segue.identifier == "PresentNewGameView" {
             let vc = segue.destinationViewController as NewGameViewController
@@ -116,7 +119,6 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.unhighlight()
     }
 
-
     // MARK: GameDelegate
 
     func gameTurnCancelled(sender: AnyObject!, game: Game) {
@@ -130,6 +132,12 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         actionableGames = actionableGames.filter({ $0.objectId != game.objectId })
         waitingGames.append(game)
         gamesCollectionView.reloadData()
+    }
+
+    // MARK: MenuDelegate
+
+    func menuBackButtonTap(sender: AnyObject!) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     // MARK: FBFriendPickerDelegate

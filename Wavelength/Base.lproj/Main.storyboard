@@ -27,6 +27,7 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -124,7 +125,7 @@
                                     <constraint firstAttribute="width" constant="50" id="N9R-lO-pQ3"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="OgV-2k-XaK" kind="presentation" id="jtA-p0-JTH"/>
+                                    <segue destination="OgV-2k-XaK" kind="presentation" identifier="PresentMenuView" id="jtA-p0-JTH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOO-dk-1FA">
@@ -319,25 +320,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ox7-WS-AAv">
-                                <rect key="frame" x="217" y="281" width="166" height="39"/>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.72156862749999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                <inset key="contentEdgeInsets" minX="50" minY="10" maxX="50" maxY="10"/>
-                                <state key="normal" title="LOGOUT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onLoginButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="iba-OG-iU9"/>
-                                    <action selector="onLogoutButtonTap:" destination="OgV-2k-XaK" eventType="touchUpInside" id="yIE-Vc-iaM"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9b-En-dEN">
+                                <rect key="frame" x="0.0" y="257" width="600" height="86"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ox7-WS-AAv">
+                                        <rect key="frame" x="217" y="0.0" width="166" height="39"/>
+                                        <color key="backgroundColor" red="0.40000000000000002" green="0.72156862749999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="50" minY="10" maxX="50" maxY="10"/>
+                                        <state key="normal" title="LOGOUT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onLogoutButtonTap:" destination="OgV-2k-XaK" eventType="touchUpInside" id="yIE-Vc-iaM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvE-FX-tcC">
+                                        <rect key="frame" x="228" y="47" width="144" height="39"/>
+                                        <color key="backgroundColor" red="0.40000000000000002" green="0.72156862749999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="50" minY="10" maxX="50" maxY="10"/>
+                                        <state key="normal" title="BACK">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onBackButtonTap:" destination="OgV-2k-XaK" eventType="touchUpInside" id="hOx-h8-mQN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="RvE-FX-tcC" secondAttribute="centerX" id="Pum-Ao-eK5"/>
+                                    <constraint firstAttribute="centerX" secondItem="Ox7-WS-AAv" secondAttribute="centerX" id="Wzp-o1-nIj"/>
+                                    <constraint firstAttribute="bottom" secondItem="RvE-FX-tcC" secondAttribute="bottom" id="iJp-Gx-wZN"/>
+                                    <constraint firstItem="RvE-FX-tcC" firstAttribute="top" secondItem="Ox7-WS-AAv" secondAttribute="bottom" constant="8" id="vbO-0t-fSR"/>
+                                    <constraint firstItem="Ox7-WS-AAv" firstAttribute="top" secondItem="d9b-En-dEN" secondAttribute="top" id="yUg-cU-PjX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="Ox7-WS-AAv" secondAttribute="centerY" id="IQ6-hh-m1a"/>
-                            <constraint firstAttribute="centerX" secondItem="Ox7-WS-AAv" secondAttribute="centerX" id="rhM-lj-sfr"/>
+                            <constraint firstAttribute="trailing" secondItem="d9b-En-dEN" secondAttribute="trailing" id="NoE-Su-maB"/>
+                            <constraint firstItem="d9b-En-dEN" firstAttribute="leading" secondItem="zsn-KR-s3c" secondAttribute="leading" id="nWA-xa-rov"/>
+                            <constraint firstAttribute="centerY" secondItem="d9b-En-dEN" secondAttribute="centerY" id="uPT-4u-4lw"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -467,8 +494,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onLoginButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LKk-ag-8V2"/>
-                                    <action selector="onLogoutButtonTap:" destination="OgV-2k-XaK" eventType="touchUpInside" id="lqk-1P-aBS"/>
                                     <action selector="onSubmitButtonTap:" destination="X1f-eq-ERm" eventType="touchUpInside" id="fig-aB-9ne"/>
                                 </connections>
                             </button>
