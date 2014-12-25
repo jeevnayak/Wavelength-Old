@@ -9,8 +9,8 @@
 class GameCell : UICollectionViewCell {
 
     @IBOutlet weak var contentContainer: UIView!
-    @IBOutlet weak var opponentProfilePictureView: FBProfilePictureView!
-    @IBOutlet weak var opponentNameLabel: UILabel!
+    @IBOutlet weak var partnerProfilePictureView: FBProfilePictureView!
+    @IBOutlet weak var partnerNameLabel: UILabel!
     @IBOutlet weak var currentStreakLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
 
@@ -21,13 +21,9 @@ class GameCell : UICollectionViewCell {
     }
 
     func reloadData() {
-        if game.player1.objectId == PFUser.currentUser().objectId {
-            opponentProfilePictureView.profileID = game.player2FbId
-            opponentNameLabel.text = game.player2FirstName.uppercaseString
-        } else {
-            opponentProfilePictureView.profileID = game.player1FbId
-            opponentNameLabel.text = game.player1FirstName.uppercaseString
-        }
+        let user = PFUser.currentUser()
+        partnerProfilePictureView.profileID = game.getPartnerFbId(user)
+        partnerNameLabel.text = game.getPartnerFirstName(user).uppercaseString
     }
 
     func highlight() {

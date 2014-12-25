@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FBFriendPickerDelegate {
+class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, LoadGameDelegate, FBFriendPickerDelegate {
 
     @IBOutlet weak var gamesCollectionView: UICollectionView!
 
     var actionableGames: [Game]!
     var waitingGames: [Game]!
-    var opponentFbIds: [String]!
+    var partnerFbIds: [String]!
 
     // MARK: UIViewController
 
@@ -33,6 +33,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
             let selectedIndexPath = selectedIndexPaths[0] as NSIndexPath
             assert(selectedIndexPath.section == 0, "should only be able to select actionable games")
             vc.game = actionableGames[selectedIndexPath.row]
+            vc.delegate = self
         } else if segue.identifier == "PresentNewGameView" {
             let vc = segue.destinationViewController as NewGameViewController
             vc.delegate = self
@@ -105,16 +106,30 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         return (indexPath.section == 0)
     }
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        collectionView.deselectItemAtIndexPath(indexPath, animated: false)
-
+    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as GameCell
         cell.highlight()
     }
 
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as GameCell
         cell.unhighlight()
+    }
+
+
+    // MARK: LoadGameDelegate
+
+    func gameTurnCancelled(sender: AnyObject!, game: Game) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func gameTurnDone(sender: AnyObject!, game: Game) {
+        dismissViewControllerAnimated(true, completion: nil)
+
+        assert(game.currentPlayer.objectId != PFUser.currentUser().objectId, "shouldn't be the current player's turn anymore")
+        actionableGames = actionableGames.filter({ $0.objectId != game.objectId })
+        waitingGames.append(game)
+        gamesCollectionView.reloadData()
     }
 
     // MARK: FBFriendPickerDelegate
@@ -156,8 +171,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     func friendPickerViewController(friendPicker: FBFriendPickerViewController!, shouldIncludeUser user: FBGraphUser!) -> Bool {
-        if let opponentFbIds = opponentFbIds {
-            return !contains(opponentFbIds, user.objectID)
+        if let partnerFbIds = partnerFbIds {
+            return !contains(partnerFbIds, user.objectID)
         } else {
             return true
         }
@@ -169,13 +184,9 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         Game.getGamesForUser(PFUser.currentUser(), block: { (actionableGames, waitingGames) -> Void in
             self.actionableGames = actionableGames
             self.waitingGames = waitingGames
-            self.opponentFbIds = []
+            self.partnerFbIds = []
             for game in (actionableGames + waitingGames) {
-                if game.player1.objectId == PFUser.currentUser().objectId {
-                    self.opponentFbIds.append(game.player2FbId)
-                } else {
-                    self.opponentFbIds.append(game.player1FbId)
-                }
+                self.partnerFbIds.append(game.getPartnerFbId(PFUser.currentUser()))
             }
             self.gamesCollectionView.reloadData()
         })

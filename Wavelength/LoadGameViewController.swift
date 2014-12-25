@@ -6,11 +6,17 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-class LoadGameViewController: UIViewController {
+protocol LoadGameDelegate {
+    func gameTurnCancelled(sender: AnyObject!, game: Game)
+    func gameTurnDone(sender: AnyObject!, game: Game)
+}
+
+class LoadGameViewController: UIViewController, GiveCluesDelegate {
 
     var game: Game!
     var prevRound: Round!
     var currentRound: Round!
+    var delegate: LoadGameDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +72,19 @@ class LoadGameViewController: UIViewController {
             let vc = segue.destinationViewController as GiveCluesViewController
             vc.game = game
             vc.round = currentRound
+            vc.delegate = self
         }
+    }
+
+    // MARK: GiveCluesDelegate
+
+    func giveCluesCancelled(sender: AnyObject!) {
+        dismissViewControllerAnimated(true, completion: nil)
+        delegate?.gameTurnCancelled(self, game: game)
+    }
+
+    func giveCluesDone(sender: AnyObject!) {
+        dismissViewControllerAnimated(true, completion: nil)
+        delegate?.gameTurnDone(self, game: game)
     }
 }

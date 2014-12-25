@@ -52,11 +52,27 @@ class Game: PFObject, PFSubclassing {
         }
     }
 
-    func getOpponent(player: PFUser) -> PFUser {
+    func getPartner(player: PFUser) -> PFUser {
         if player.objectId == player1.objectId {
             return player2
         } else {
             return player1
+        }
+    }
+
+    func getPartnerFbId(player: PFUser) -> String {
+        if player.objectId == player1.objectId {
+            return player2FbId
+        } else {
+            return player1FbId
+        }
+    }
+
+    func getPartnerFirstName(player: PFUser) -> String {
+        if player.objectId == player1.objectId {
+            return player2FirstName
+        } else {
+            return player1FirstName
         }
     }
 }
