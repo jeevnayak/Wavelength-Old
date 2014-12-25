@@ -231,6 +231,7 @@
                                             <outlet property="levelLabel" destination="26V-Az-ySB" id="Qd4-65-B2G"/>
                                             <outlet property="opponentNameLabel" destination="Kb5-gI-uFT" id="rUZ-mH-bQS"/>
                                             <outlet property="opponentProfilePictureView" destination="FL7-Gs-BW5" id="hGz-fx-yyF"/>
+                                            <segue destination="dYO-ls-TfF" kind="showDetail" identifier="ShowLoadGameView" id="deh-Vy-4ph"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -334,6 +335,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2UF-ve-sqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="361" y="1810"/>
+        </scene>
+        <!--Load Game View Controller-->
+        <scene sceneID="bV4-lS-c9W">
+            <objects>
+                <viewController id="dYO-ls-TfF" customClass="LoadGameViewController" customModule="Wavelength" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4TT-1d-ss6"/>
+                        <viewControllerLayoutGuide type="bottom" id="RWU-l4-YZj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hm2-3K-bCv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2Du-Jl-dKJ">
+                                <rect key="frame" x="239" y="299" width="150" height="2"/>
+                            </progressView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ATO-07-sis">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="ATO-07-sis" secondAttribute="centerY" id="m1P-JL-iCh"/>
+                            <constraint firstAttribute="centerX" secondItem="ATO-07-sis" secondAttribute="centerX" id="sMe-qe-Bck"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="2Du-Jl-dKJ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <segue destination="X1f-eq-ERm" kind="showDetail" identifier="ShowGiveCluesView" id="0lI-oX-LhW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vDM-7R-HVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1269" y="620"/>
+        </scene>
+        <!--Give Clues View Controller-->
+        <scene sceneID="E1E-2J-kSF">
+            <objects>
+                <viewController id="X1f-eq-ERm" customClass="GiveCluesViewController" customModule="Wavelength" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zgz-gl-ugG"/>
+                        <viewControllerLayoutGuide type="bottom" id="8cS-hR-gKy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rT5-fX-WwV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MQo-S6-gDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2095" y="1387"/>
         </scene>
         <!--New Game View Controller-->
         <scene sceneID="G0F-0W-W3r">

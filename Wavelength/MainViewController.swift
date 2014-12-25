@@ -26,7 +26,14 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "PresentNewGameView" {
+        if segue.identifier == "ShowLoadGameView" {
+            let vc = segue.destinationViewController as LoadGameViewController
+            let selectedIndexPaths = gamesCollectionView.indexPathsForSelectedItems()
+            assert(selectedIndexPaths.count == 1, "must have selected exactly one game")
+            let selectedIndexPath = selectedIndexPaths[0] as NSIndexPath
+            assert(selectedIndexPath.section == 0, "should only be able to select actionable games")
+            vc.game = actionableGames[selectedIndexPath.row]
+        } else if segue.identifier == "PresentNewGameView" {
             let vc = segue.destinationViewController as NewGameViewController
             vc.delegate = self
         }
@@ -154,19 +161,6 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         } else {
             return true
         }
-    }
-
-    // MARK: event handlers
-
-    @IBAction func onLogoutButtonTap(sender: AnyObject) {
-        PFUser.logOut()
-
-        let rootVC = UIApplication.sharedApplication().delegate?.window??.rootViewController
-        let loginVC = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("LoginViewController") as? UIViewController
-        UIView.transitionFromView(rootVC!.view, toView: loginVC!.view, duration: 1, options: UIViewAnimationOptions.TransitionCrossDissolve, completion: { (finished) -> Void in
-            let appDelegate = UIApplication.sharedApplication().delegate
-            appDelegate?.window??.rootViewController = loginVC
-        })
     }
 
     // MARK: helpers
