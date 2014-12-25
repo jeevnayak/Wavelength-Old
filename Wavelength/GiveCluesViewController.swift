@@ -51,12 +51,16 @@ class GiveCluesViewController: UIViewController {
             presentViewController(alert, animated: true, completion: nil)
         } else {
             round.clues = [clue1, clue2, clue3, clue4]
-            round.saveEventually()
-
-            game.currentPlayer = game.getPartner(PFUser.currentUser())
-            game.saveEventually()
-            
-            delegate?.giveCluesDone(self)
+            round.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
+                if error == nil {
+                    self.game.currentPlayer = self.game.getPartner(PFUser.currentUser())
+                    self.game.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
+                        if error == nil {
+                            self.delegate?.giveCluesDone(self)
+                        }
+                    })
+                }
+            })
         }
     }
 }

@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
                         PFUser.currentUser().setObject(result["name"], forKey: "name")
                         PFUser.currentUser().setObject(result["first_name"], forKey: "firstName")
                         PFUser.currentUser().setObject(result["last_name"], forKey: "lastName")
-                        PFUser.currentUser().saveEventually()
+                        PFUser.currentUser().saveInBackgroundWithTarget(nil, selector: nil)
                     } else {
                         // TODO(rajeev): handle error
                     }
