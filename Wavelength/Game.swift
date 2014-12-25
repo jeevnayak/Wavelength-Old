@@ -9,9 +9,11 @@
 class Game: PFObject, PFSubclassing {
 
     @NSManaged var player1: PFUser
+    @NSManaged var player1FirstName: String
     @NSManaged var player1Name: String
     @NSManaged var player1FbId: String
     @NSManaged var player2: PFUser
+    @NSManaged var player2FirstName: String
     @NSManaged var player2Name: String
     @NSManaged var player2FbId: String
     @NSManaged var currentRoundIndex: Int

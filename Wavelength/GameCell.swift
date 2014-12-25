@@ -23,10 +23,10 @@ class GameCell : UICollectionViewCell {
     func reloadData() {
         if game.player1.objectId == PFUser.currentUser().objectId {
             opponentProfilePictureView.profileID = game.player2FbId
-            opponentNameLabel.text = game.player2Name.uppercaseString
+            opponentNameLabel.text = game.player2FirstName.uppercaseString
         } else {
             opponentProfilePictureView.profileID = game.player1FbId
-            opponentNameLabel.text = game.player1Name.uppercaseString
+            opponentNameLabel.text = game.player1FirstName.uppercaseString
         }
     }
 

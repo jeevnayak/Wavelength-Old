@@ -98,12 +98,14 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         return (indexPath.section == 0)
     }
 
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: false)
+
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as GameCell
         cell.highlight()
     }
 
-    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as GameCell
         cell.unhighlight()
     }
@@ -125,9 +127,11 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
             if error == nil {
                 let game = Game()
                 game.player1 = PFUser.currentUser()
+                game.player1FirstName = game.player1.objectForKey("firstName") as String
                 game.player1Name = game.player1.objectForKey("name") as String
                 game.player1FbId = game.player1.objectForKey("fbId") as String
                 game.player2 = object as PFUser
+                game.player2FirstName = game.player2.objectForKey("firstName") as String
                 game.player2Name = game.player2.objectForKey("name") as String
                 game.player2FbId = game.player2.objectForKey("fbId") as String
                 game.currentRoundIndex = 0
