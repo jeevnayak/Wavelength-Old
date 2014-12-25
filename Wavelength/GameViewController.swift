@@ -11,7 +11,7 @@ protocol GameDelegate {
     func gameTurnDone(sender: AnyObject!, game: Game)
 }
 
-class GameViewController: UIViewController, GiveCluesDelegate {
+class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelegate {
 
     var game: Game!
     var prevRound: Round!
@@ -31,7 +31,7 @@ class GameViewController: UIViewController, GiveCluesDelegate {
                 if error == nil {
                     self.currentRound = object as Round
                     if self.currentRound.wereCluesGiven() {
-                        //                        self.performSegueWithIdentifier("ShowMakeGuessesView", sender: self)
+                        self.showMakeGuessesView()
                     } else {
                         self.showGiveCluesView()
                     }
@@ -54,7 +54,7 @@ class GameViewController: UIViewController, GiveCluesDelegate {
 
                     if self.currentRound.wereCluesGiven() {
                         if self.prevRound.replayed.boolValue {
-                            //                            self.performSegueWithIdentifier("ShowMakeGuessesView", sender: self)
+                            self.showMakeGuessesView()
                         } else {
                             //                            self.performSegueWithIdentifier("ShowReplayGuessesView", sender: self)
                         }
@@ -67,6 +67,16 @@ class GameViewController: UIViewController, GiveCluesDelegate {
         }
     }
 
+    func showMakeGuessesView() {
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("MakeGuessesViewController") as MakeGuessesViewController
+        vc.game = game
+        vc.round = currentRound
+        vc.delegate = self
+        addChildViewController(vc)
+        view.addSubview(vc.view)
+        vc.didMoveToParentViewController(self)
+    }
+
     func showGiveCluesView() {
         let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("GiveCluesViewController") as GiveCluesViewController
         vc.game = game
@@ -75,6 +85,16 @@ class GameViewController: UIViewController, GiveCluesDelegate {
         addChildViewController(vc)
         view.addSubview(vc.view)
         vc.didMoveToParentViewController(self)
+    }
+
+    // MARK: MakeGuessesDelegate
+
+    func makeGuessesCancelled(sender: AnyObject!) {
+        delegate?.gameTurnCancelled(self, game: game)
+    }
+
+    func makeGuessesDone(sender: AnyObject!) {
+        // TODO(rajeev): give clues
     }
 
     // MARK: GiveCluesDelegate
