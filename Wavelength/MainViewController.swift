@@ -160,10 +160,9 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
                 game.currentPlayer = PFUser.currentUser()
                 game.saveInBackgroundWithBlock { (succeeded, error) -> Void in
                     if succeeded {
-                        Round.newRoundInGame(game, index: 0, block: { (newRound) -> Void in
-                            self.actionableGames.append(game)
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        })
+                        Round.newRoundInGame(game, index: 0)
+                        self.actionableGames.append(game)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 }
             }

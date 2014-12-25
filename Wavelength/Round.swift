@@ -24,7 +24,7 @@ class Round: PFObject, PFSubclassing {
         return "Round"
     }
 
-    class func newRoundInGame(game: Game, index: Int, block: (newRound: Round) -> Void) {
+    class func newRoundInGame(game: Game, index: Int) {
         let round = Round()
         round.game = game
         round.index = index
@@ -84,11 +84,7 @@ class Round: PFObject, PFSubclassing {
         round.guesses = []
         round.correctGuess = -1
         round.replayed = NSNumber(bool: false)
-        round.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-            if error == nil {
-                block(newRound: round)
-            }
-        }
+        round.saveEventually()
     }
 
     func wereCluesGiven() -> Bool {

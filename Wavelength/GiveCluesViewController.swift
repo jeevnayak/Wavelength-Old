@@ -41,5 +41,22 @@ class GiveCluesViewController: UIViewController {
     }
 
     @IBAction func onSubmitButtonTap(sender: AnyObject) {
+        let clue1 = clue1Field.text
+        let clue2 = clue2Field.text
+        let clue3 = clue3Field.text
+        let clue4 = clue4Field.text
+        if clue1.isEmpty || clue2.isEmpty || clue3.isEmpty || clue4.isEmpty {
+            let alert = UIAlertController(title: "Invalid", message: "You must fill out all 4 words", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        } else {
+            round.clues = [clue1, clue2, clue3, clue4]
+            round.saveEventually()
+
+            game.currentPlayer = game.getPartner(PFUser.currentUser())
+            game.saveEventually()
+            
+            delegate?.giveCluesDone(self)
+        }
     }
 }
