@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1307C51D1A46992F00429722 /* GameListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307C51C1A46992F00429722 /* GameListHeaderView.swift */; };
 		1307C51F1A4A8C8700429722 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307C51E1A4A8C8700429722 /* MenuViewController.swift */; };
-		1307C5211A4BA46D00429722 /* LoadGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307C5201A4BA46D00429722 /* LoadGameViewController.swift */; };
 		132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132923121A3C0CDA000BA423 /* AppDelegate.swift */; };
 		132923181A3C0CDA000BA423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 132923161A3C0CDA000BA423 /* Main.storyboard */; };
 		1329231A1A3C0CDA000BA423 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132923191A3C0CDA000BA423 /* Images.xcassets */; };
@@ -38,6 +37,7 @@
 		133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133200561A465A9200713DD5 /* NewGameViewController.swift */; };
 		1332005C1A4661D800713DD5 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1332005B1A4661D800713DD5 /* GameCell.swift */; };
 		13DC07801A4BA7D7004E6A68 /* GiveCluesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC077F1A4BA7D7004E6A68 /* GiveCluesViewController.swift */; };
+		13E106D41A4BDA88002120CA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E106D31A4BDA87002120CA /* GameViewController.swift */; };
 		2197AB841A47FC7500C5777E /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2197AB821A47FC7500C5777E /* Montserrat-Bold.ttf */; };
 		2197AB851A47FC7500C5777E /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2197AB831A47FC7500C5777E /* Montserrat-Regular.ttf */; };
 		2197AB871A47FD5500C5777E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2197AB861A47FD5500C5777E /* FacebookSDK.framework */; };
@@ -56,7 +56,6 @@
 /* Begin PBXFileReference section */
 		1307C51C1A46992F00429722 /* GameListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListHeaderView.swift; sourceTree = "<group>"; };
 		1307C51E1A4A8C8700429722 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		1307C5201A4BA46D00429722 /* LoadGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadGameViewController.swift; sourceTree = "<group>"; };
 		1329230D1A3C0CDA000BA423 /* Wavelength.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wavelength.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		132923111A3C0CDA000BA423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		132923121A3C0CDA000BA423 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		133200561A465A9200713DD5 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		1332005B1A4661D800713DD5 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		13DC077F1A4BA7D7004E6A68 /* GiveCluesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiveCluesViewController.swift; sourceTree = "<group>"; };
+		13E106D31A4BDA87002120CA /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2197AB821A47FC7500C5777E /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		2197AB831A47FC7500C5777E /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		2197AB861A47FD5500C5777E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -222,8 +222,8 @@
 				133200541A464C6F00713DD5 /* MainViewController.swift */,
 				133200561A465A9200713DD5 /* NewGameViewController.swift */,
 				1307C51E1A4A8C8700429722 /* MenuViewController.swift */,
-				1307C5201A4BA46D00429722 /* LoadGameViewController.swift */,
 				13DC077F1A4BA7D7004E6A68 /* GiveCluesViewController.swift */,
+				13E106D31A4BDA87002120CA /* GameViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -386,11 +386,11 @@
 				133200511A4642C400713DD5 /* Game.swift in Sources */,
 				133200531A4642F500713DD5 /* Round.swift in Sources */,
 				132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */,
+				13E106D41A4BDA88002120CA /* GameViewController.swift in Sources */,
 				1307C51F1A4A8C8700429722 /* MenuViewController.swift in Sources */,
 				133200551A464C6F00713DD5 /* MainViewController.swift in Sources */,
 				1307C51D1A46992F00429722 /* GameListHeaderView.swift in Sources */,
 				133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */,
-				1307C5211A4BA46D00429722 /* LoadGameViewController.swift in Sources */,
 				1332005C1A4661D800713DD5 /* GameCell.swift in Sources */,
 				13DC07801A4BA7D7004E6A68 /* GiveCluesViewController.swift in Sources */,
 			);

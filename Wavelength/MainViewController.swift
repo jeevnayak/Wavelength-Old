@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, LoadGameDelegate, FBFriendPickerDelegate {
+class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GameDelegate, FBFriendPickerDelegate {
 
     @IBOutlet weak var gamesCollectionView: UICollectionView!
 
@@ -26,8 +26,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowLoadGameView" {
-            let vc = segue.destinationViewController as LoadGameViewController
+        if segue.identifier == "ShowGameView" {
+            let vc = segue.destinationViewController as GameViewController
             let selectedIndexPaths = gamesCollectionView.indexPathsForSelectedItems()
             assert(selectedIndexPaths.count == 1, "must have selected exactly one game")
             let selectedIndexPath = selectedIndexPaths[0] as NSIndexPath
@@ -117,7 +117,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
 
-    // MARK: LoadGameDelegate
+    // MARK: GameDelegate
 
     func gameTurnCancelled(sender: AnyObject!, game: Game) {
         dismissViewControllerAnimated(true, completion: nil)

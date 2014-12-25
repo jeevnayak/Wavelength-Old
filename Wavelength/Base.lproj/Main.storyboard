@@ -239,7 +239,7 @@
                                             <outlet property="levelLabel" destination="26V-Az-ySB" id="Qd4-65-B2G"/>
                                             <outlet property="partnerNameLabel" destination="Kb5-gI-uFT" id="yVa-re-fqG"/>
                                             <outlet property="partnerProfilePictureView" destination="FL7-Gs-BW5" id="TeZ-J2-ejK"/>
-                                            <segue destination="dYO-ls-TfF" kind="showDetail" identifier="ShowLoadGameView" id="deh-Vy-4ph"/>
+                                            <segue destination="dYO-ls-TfF" kind="showDetail" identifier="ShowGameView" id="deh-Vy-4ph"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -344,10 +344,10 @@
             </objects>
             <point key="canvasLocation" x="361" y="1810"/>
         </scene>
-        <!--Load Game View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="bV4-lS-c9W">
             <objects>
-                <viewController id="dYO-ls-TfF" customClass="LoadGameViewController" customModule="Wavelength" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dYO-ls-TfF" customClass="GameViewController" customModule="Wavelength" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4TT-1d-ss6"/>
                         <viewControllerLayoutGuide type="bottom" id="RWU-l4-YZj"/>
@@ -374,9 +374,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <segue destination="X1f-eq-ERm" kind="showDetail" identifier="ShowGiveCluesView" id="0lI-oX-LhW"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vDM-7R-HVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -385,7 +382,7 @@
         <!--Give Clues View Controller-->
         <scene sceneID="E1E-2J-kSF">
             <objects>
-                <viewController id="X1f-eq-ERm" customClass="GiveCluesViewController" customModule="Wavelength" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GiveCluesViewController" id="X1f-eq-ERm" customClass="GiveCluesViewController" customModule="Wavelength" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgz-gl-ugG"/>
                         <viewControllerLayoutGuide type="bottom" id="8cS-hR-gKy"/>
@@ -395,7 +392,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PICK CLUES SO YOUR PARTNER WILL GUESS THE WORD" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXO-B9-jqU">
-                                <rect key="frame" x="219" y="35" width="163" height="24.5"/>
+                                <rect key="frame" x="219.5" y="35" width="162.5" height="24.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -407,7 +404,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3a-wK-qbt">
-                                <rect key="frame" x="20" y="30" width="50" height="30"/>
+                                <rect key="frame" x="15" y="30" width="50" height="30"/>
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.72156862749999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="gMl-Bv-w55"/>
@@ -418,7 +415,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BACK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRf-0c-e6f">
-                                <rect key="frame" x="20" y="63" width="29" height="12.5"/>
+                                <rect key="frame" x="15" y="63" width="29" height="12.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -486,7 +483,7 @@
                             <constraint firstItem="T4U-vv-wKc" firstAttribute="top" secondItem="PtI-bE-fm9" secondAttribute="bottom" constant="10" id="Uge-ai-0b8"/>
                             <constraint firstItem="PtI-bE-fm9" firstAttribute="top" secondItem="vXO-B9-jqU" secondAttribute="bottom" constant="25" id="Wct-7Q-EsH"/>
                             <constraint firstItem="cTs-FP-EVM" firstAttribute="top" secondItem="ZNu-r0-ZlV" secondAttribute="bottom" constant="20" id="XNt-de-XYE"/>
-                            <constraint firstItem="f3a-wK-qbt" firstAttribute="leading" secondItem="rT5-fX-WwV" secondAttribute="leading" constant="20" id="bdh-fD-vAf"/>
+                            <constraint firstItem="f3a-wK-qbt" firstAttribute="leading" secondItem="rT5-fX-WwV" secondAttribute="leading" constant="15" id="bdh-fD-vAf"/>
                             <constraint firstAttribute="centerX" secondItem="T4U-vv-wKc" secondAttribute="centerX" id="hfw-pb-MPu"/>
                             <constraint firstAttribute="centerX" secondItem="PtI-bE-fm9" secondAttribute="centerX" id="ijN-VW-ndS"/>
                             <constraint firstAttribute="centerX" secondItem="UsE-u1-4Mp" secondAttribute="centerX" id="j0R-Vu-EsE"/>

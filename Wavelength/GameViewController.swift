@@ -1,22 +1,22 @@
 //
-//  LoadGameViewController.swift
+//  GameViewController.swift
 //  Wavelength
 //
 //  Created by Rajeev Nayak on 12/24/14.
 //  Copyright (c) 2014 jeev. All rights reserved.
 //
 
-protocol LoadGameDelegate {
+protocol GameDelegate {
     func gameTurnCancelled(sender: AnyObject!, game: Game)
     func gameTurnDone(sender: AnyObject!, game: Game)
 }
 
-class LoadGameViewController: UIViewController, GiveCluesDelegate {
+class GameViewController: UIViewController, GiveCluesDelegate {
 
     var game: Game!
     var prevRound: Round!
     var currentRound: Round!
-    var delegate: LoadGameDelegate?
+    var delegate: GameDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +31,9 @@ class LoadGameViewController: UIViewController, GiveCluesDelegate {
                 if error == nil {
                     self.currentRound = object as Round
                     if self.currentRound.wereCluesGiven() {
-//                        self.performSegueWithIdentifier("ShowMakeGuessesView", sender: self)
+                        //                        self.performSegueWithIdentifier("ShowMakeGuessesView", sender: self)
                     } else {
-                        self.performSegueWithIdentifier("ShowGiveCluesView", sender: self)
+                        self.showGiveCluesView()
                     }
                 }
             }
@@ -54,37 +54,36 @@ class LoadGameViewController: UIViewController, GiveCluesDelegate {
 
                     if self.currentRound.wereCluesGiven() {
                         if self.prevRound.replayed.boolValue {
-//                            self.performSegueWithIdentifier("ShowMakeGuessesView", sender: self)
+                            //                            self.performSegueWithIdentifier("ShowMakeGuessesView", sender: self)
                         } else {
-//                            self.performSegueWithIdentifier("ShowReplayGuessesView", sender: self)
+                            //                            self.performSegueWithIdentifier("ShowReplayGuessesView", sender: self)
                         }
                     } else {
                         assert(!self.prevRound.replayed.boolValue, "previous round must not have been replayed if clues need to be given")
-                        self.performSegueWithIdentifier("ShowGiveCluesView", sender: self)
+                        self.showGiveCluesView()
                     }
                 }
             })
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowGiveCluesView" {
-            let vc = segue.destinationViewController as GiveCluesViewController
-            vc.game = game
-            vc.round = currentRound
-            vc.delegate = self
-        }
+    func showGiveCluesView() {
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("GiveCluesViewController") as GiveCluesViewController
+        vc.game = game
+        vc.round = currentRound
+        vc.delegate = self
+        addChildViewController(vc)
+        view.addSubview(vc.view)
+        vc.didMoveToParentViewController(self)
     }
 
     // MARK: GiveCluesDelegate
 
     func giveCluesCancelled(sender: AnyObject!) {
-        dismissViewControllerAnimated(true, completion: nil)
         delegate?.gameTurnCancelled(self, game: game)
     }
 
     func giveCluesDone(sender: AnyObject!) {
-        dismissViewControllerAnimated(true, completion: nil)
         delegate?.gameTurnDone(self, game: game)
     }
 }
