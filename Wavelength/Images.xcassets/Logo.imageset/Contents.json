@@ -3,16 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "wavelength-logo.png"
+      "filename" : "wavelength-logo180.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "wavelength-logo2x.png"
+      "filename" : "wavelength-logo360.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "wavelength-logo540.png"
     }
   ],
   "info" : {
