@@ -18,6 +18,7 @@ class Game: PFObject, PFSubclassing {
     @NSManaged var player2FbId: String
     @NSManaged var currentRoundIndex: Int
     @NSManaged var currentPlayer: PFUser
+    @NSManaged var currentStreak: Int
 
     override class func load() {
         self.registerSubclass()

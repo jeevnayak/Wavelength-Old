@@ -24,17 +24,15 @@ class GiveCluesViewController: UIViewController {
     var round: Round!
     var delegate: GiveCluesDelegate?
 
+    // MARK: UIViewController
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         reloadData()
     }
 
-    func reloadData() {
-        let partnerFirstName = game.getPartnerFirstName(PFUser.currentUser()).uppercaseString
-        descriptionLabel.text = "PICK CLUES SO \(partnerFirstName)\nWILL GUESS THE WORD"
-        wordLabel.text = round.word
-    }
+    // MARK: event handlers
 
     @IBAction func onBackButtonTap(sender: AnyObject) {
         delegate?.giveCluesCancelled(self)
@@ -62,5 +60,13 @@ class GiveCluesViewController: UIViewController {
                 }
             })
         }
+    }
+
+    // MARK: helpers
+
+    func reloadData() {
+        let partnerFirstName = game.getPartnerFirstName(PFUser.currentUser()).uppercaseString
+        descriptionLabel.text = "PICK CLUES SO \(partnerFirstName)\nWILL GUESS THE WORD"
+        wordLabel.text = round.word
     }
 }

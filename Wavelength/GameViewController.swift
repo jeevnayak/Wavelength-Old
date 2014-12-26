@@ -18,6 +18,8 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
     var currentRound: Round!
     var delegate: GameDelegate?
 
+    // MARK: UIViewController
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,6 +69,42 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
         }
     }
 
+    // MARK: MakeGuessesDelegate
+
+    func makeGuessesCancelled(sender: AnyObject!) {
+        delegate?.gameTurnCancelled(self, game: game)
+    }
+
+    func makeGuessesDone(sender: AnyObject!) {
+        removeChildViewControllers()
+        Round.newRoundInGame(game, index: currentRound.index + 1) { (newRound) -> Void in
+            self.prevRound = self.currentRound
+            self.currentRound = newRound
+
+            self.game.currentRoundIndex += 1
+            if self.prevRound.wasWon() {
+                self.game.currentStreak++
+            } else {
+                self.game.currentStreak = 0
+            }
+            self.game.saveInBackgroundWithTarget(nil, selector: nil)
+
+            self.showGiveCluesView()
+        }
+    }
+
+    // MARK: GiveCluesDelegate
+
+    func giveCluesCancelled(sender: AnyObject!) {
+        delegate?.gameTurnCancelled(self, game: game)
+    }
+
+    func giveCluesDone(sender: AnyObject!) {
+        delegate?.gameTurnDone(self, game: game)
+    }
+
+    // MARK: helpers
+
     func showMakeGuessesView() {
         let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("MakeGuessesViewController") as MakeGuessesViewController
         vc.game = game
@@ -93,32 +131,5 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
             vc.view??.removeFromSuperview()
             vc.removeFromParentViewController()
         }
-    }
-
-    // MARK: MakeGuessesDelegate
-
-    func makeGuessesCancelled(sender: AnyObject!) {
-        delegate?.gameTurnCancelled(self, game: game)
-    }
-
-    func makeGuessesDone(sender: AnyObject!) {
-        removeChildViewControllers()
-        Round.newRoundInGame(game, index: currentRound.index + 1) { (newRound) -> Void in
-            self.prevRound = self.currentRound
-            self.currentRound = newRound
-            self.game.currentRoundIndex += 1
-            self.game.saveInBackgroundWithTarget(nil, selector: nil)
-            self.showGiveCluesView()
-        }
-    }
-
-    // MARK: GiveCluesDelegate
-
-    func giveCluesCancelled(sender: AnyObject!) {
-        delegate?.gameTurnCancelled(self, game: game)
-    }
-
-    func giveCluesDone(sender: AnyObject!) {
-        delegate?.gameTurnDone(self, game: game)
     }
 }

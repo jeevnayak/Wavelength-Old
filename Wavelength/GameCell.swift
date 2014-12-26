@@ -24,6 +24,11 @@ class GameCell : UICollectionViewCell {
         let user = PFUser.currentUser()
         partnerProfilePictureView.profileID = game.getPartnerFbId(user)
         partnerNameLabel.text = game.getPartnerFirstName(user).uppercaseString
+        if game.currentStreak == 1 {
+            currentStreakLabel.text = "\(game.currentStreak) GAME"
+        } else {
+            currentStreakLabel.text = "\(game.currentStreak) GAMES"
+        }
     }
 
     func highlight() {

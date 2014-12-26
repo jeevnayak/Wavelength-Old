@@ -179,4 +179,14 @@ class Round: PFObject, PFSubclassing {
 
         return isGuessCorrect ? GuessResult.Correct : GuessResult.Incorrect
     }
+
+    func wasWon() -> Bool {
+        for guess in guesses {
+            if normalize(guess as String) == normalize(word) {
+                return true
+            }
+        }
+
+        return false
+    }
 }

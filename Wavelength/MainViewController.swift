@@ -123,6 +123,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     func gameTurnCancelled(sender: AnyObject!, game: Game) {
         dismissViewControllerAnimated(true, completion: nil)
+
+        gamesCollectionView.reloadData()
     }
 
     func gameTurnDone(sender: AnyObject!, game: Game) {
@@ -166,10 +168,12 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
                 game.player2FbId = game.player2.objectForKey("fbId") as String
                 game.currentRoundIndex = 0
                 game.currentPlayer = PFUser.currentUser()
+                game.currentStreak = 0
                 game.saveInBackgroundWithBlock { (succeeded, error) -> Void in
                     if succeeded {
                         Round.newRoundInGame(game, index: 0, block: { (newRound) -> Void in
                             self.actionableGames.append(game)
+                            self.gamesCollectionView.reloadData()
                             self.dismissViewControllerAnimated(true, completion: nil)
                         })
                     }
