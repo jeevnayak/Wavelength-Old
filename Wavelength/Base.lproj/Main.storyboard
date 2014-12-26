@@ -47,6 +47,8 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -261,6 +263,38 @@
                                             <outlet property="partnerNameLabel" destination="Kb5-gI-uFT" id="yVa-re-fqG"/>
                                             <outlet property="partnerProfilePictureView" destination="FL7-Gs-BW5" id="TeZ-J2-ejK"/>
                                             <segue destination="dYO-ls-TfF" kind="showDetail" identifier="ShowGameView" id="deh-Vy-4ph"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewGameCell" id="UFv-Gi-8UY" customClass="NewGameCell" customModule="Wavelength" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="61"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="START A NEW GAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajj-Uf-q8s">
+                                                    <rect key="frame" x="397" y="21" width="157.5" height="18.5"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO GAMES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgn-1I-tdI">
+                                                    <rect key="frame" x="15" y="21" width="86" height="18.5"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ajj-Uf-q8s" secondAttribute="trailing" constant="45" id="9Lq-YJ-Lci"/>
+                                            <constraint firstAttribute="centerY" secondItem="Xgn-1I-tdI" secondAttribute="centerY" id="ALd-J1-7GH"/>
+                                            <constraint firstAttribute="centerY" secondItem="ajj-Uf-q8s" secondAttribute="centerY" id="X6f-jE-WMP"/>
+                                            <constraint firstItem="Xgn-1I-tdI" firstAttribute="leading" secondItem="UFv-Gi-8UY" secondAttribute="leading" constant="15" id="eeN-uR-HWt"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="faA-mj-5Uf" kind="presentation" identifier="PresentNewGameView" id="aWj-mr-Dm5"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -896,4 +930,7 @@
             <point key="canvasLocation" x="1266" y="1536"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="aWj-mr-Dm5"/>
+    </inferredMetricsTieBreakers>
 </document>
