@@ -87,6 +87,14 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
         vc.didMoveToParentViewController(self)
     }
 
+    func removeChildViewControllers() {
+        for vc in childViewControllers {
+            vc.willMoveToParentViewController(nil)
+            vc.view??.removeFromSuperview()
+            vc.removeFromParentViewController()
+        }
+    }
+
     // MARK: MakeGuessesDelegate
 
     func makeGuessesCancelled(sender: AnyObject!) {
@@ -94,7 +102,14 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
     }
 
     func makeGuessesDone(sender: AnyObject!) {
-        // TODO(rajeev): give clues
+        removeChildViewControllers()
+        Round.newRoundInGame(game, index: currentRound.index + 1) { (newRound) -> Void in
+            self.prevRound = self.currentRound
+            self.currentRound = newRound
+            self.game.currentRoundIndex += 1
+            self.game.saveInBackgroundWithTarget(nil, selector: nil)
+            self.showGiveCluesView()
+        }
     }
 
     // MARK: GiveCluesDelegate

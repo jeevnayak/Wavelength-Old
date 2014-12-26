@@ -31,6 +31,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var wavelength2Background: UIView!
     @IBOutlet weak var wavelength3Background: UIView!
     @IBOutlet weak var wavelength4Background: UIView!
+    @IBOutlet weak var doneButton: UIButton!
 
     var game: Game!
     var round: Round!
@@ -89,6 +90,16 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
         return false
     }
 
+    // MARK: event handlers
+
+    @IBAction func onBackButtonTap(sender: AnyObject) {
+        delegate?.makeGuessesCancelled(self)
+    }
+
+    @IBAction func onDoneButtonTap(sender: AnyObject) {
+        delegate?.makeGuessesDone(self)
+    }
+
     // MARK: helpers
 
     func reloadData() {
@@ -107,6 +118,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
         for (i, wavelengthBackground) in enumerate(wavelengthBackgrounds) {
             wavelengthBackground.hidden = true
         }
+        doneButton.hidden = true
 
         let guessStates = round.guessStates()
         assert(guessStates.count == guessLabels.count, "incorrect number of guess states")
@@ -148,6 +160,12 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
             default:
                 assertionFailure("invalid state for guess \(i): \(guessState)")
             }
+        }
+
+        if guessStates.last != Round.GuessState.Empty && guessStates.last != Round.GuessState.Pending && guessStates.last != Round.GuessState.WavelengthPending {
+            view.endEditing(true)
+            wordGuessField.hidden = true
+            doneButton.hidden = false
         }
     }
 
