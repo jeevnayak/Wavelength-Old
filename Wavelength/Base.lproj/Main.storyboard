@@ -645,7 +645,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onDoneButtonTap:" destination="dDH-qh-A4X" eventType="touchUpInside" id="FE0-Lu-BcG"/>
-                                    <action selector="onLogoutButtonTap:" destination="OgV-2k-XaK" eventType="touchUpInside" id="UKF-Xn-Ets"/>
                                 </connections>
                             </button>
                         </subviews>
