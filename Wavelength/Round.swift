@@ -29,7 +29,6 @@ class Round: PFObject, PFSubclassing {
     @NSManaged var word: String
     @NSManaged var clues: NSArray
     @NSManaged var guesses: NSArray
-    @NSManaged var correctGuess: Int
     @NSManaged var replayed: NSNumber
 
     override class func load() {
@@ -98,7 +97,6 @@ class Round: PFObject, PFSubclassing {
         round.word = words[randomIndex]
         round.clues = []
         round.guesses = []
-        round.correctGuess = -1
         round.replayed = NSNumber(bool: false)
         round.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if error == nil {
