@@ -8,6 +8,22 @@
 
 class Round: PFObject, PFSubclassing {
 
+    enum GuessState {
+        case Empty
+        case Pending
+        case Incorrect
+        case Correct
+        case WavelengthPending
+        case WavelengthIncorrect
+        case WavelengthCorrect
+    }
+
+    enum GuessResult {
+        case Empty
+        case Incorrect
+        case Correct
+    }
+
     @NSManaged var game: Game
     @NSManaged var index: Int
     @NSManaged var word: String
@@ -93,5 +109,76 @@ class Round: PFObject, PFSubclassing {
 
     func wereCluesGiven() -> Bool {
         return clues.count > 0
+    }
+
+    func normalize(word: String) -> String {
+        return word.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).lowercaseString
+    }
+
+    func guessStates() -> [GuessState] {
+        var states = [] as [GuessState]
+        var correctGuessFound = false
+        var emptyGuessFound = false
+        for (i, clue) in enumerate(clues) {
+            if guesses.count < i + 1 {
+                if !emptyGuessFound {
+                    if !correctGuessFound {
+                        states.append(GuessState.Pending)
+                    } else {
+                        states.append(GuessState.WavelengthPending)
+                    }
+                    emptyGuessFound = true
+                } else {
+                    states.append(GuessState.Empty)
+                }
+                continue
+            }
+
+            let guess = guesses[i] as String
+            if !correctGuessFound {
+                if normalize(guess) == normalize(word) {
+                    states.append(GuessState.Correct)
+                    correctGuessFound = true
+                } else {
+                    states.append(GuessState.Incorrect)
+                }
+            } else {
+                if normalize(guess) == normalize(clue as String) {
+                    states.append(GuessState.WavelengthCorrect)
+                } else {
+                    states.append(GuessState.WavelengthIncorrect)
+                }
+            }
+        }
+
+        return states
+    }
+
+    func submitGuess(guess: String) -> GuessResult {
+        let normalizedGuess = normalize(guess)
+        if normalizedGuess.isEmpty {
+            return GuessResult.Empty
+        }
+
+        let index = guesses.count
+        var isGuessCorrect: Bool
+        switch guessStates()[index] {
+        case .Pending:
+            isGuessCorrect = (normalize(guess) == normalize(word))
+        case .WavelengthPending:
+            isGuessCorrect = (normalize(guess) == normalize(clues[index] as String))
+        default:
+            assertionFailure("invalid state for submitted guess \(index): \(guessStates()[index])")
+        }
+
+        var newGuesses = [] as [String]
+        for g in guesses {
+            newGuesses.append(g as String)
+        }
+        newGuesses.append(guess)
+        guesses = newGuesses
+        saveInBackgroundWithTarget(nil, selector: nil)
+
+        return isGuessCorrect ? GuessResult.Correct : GuessResult.Incorrect
     }
 }

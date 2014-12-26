@@ -566,12 +566,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKA-p7-ZoB">
-                                <rect key="frame" x="473" y="227" width="86.5" height="24.5"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS 3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3N-gs-PwG">
                                 <rect key="frame" x="473" y="271" width="86" height="24.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
@@ -580,6 +574,12 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS 4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIr-rd-xb1">
                                 <rect key="frame" x="473" y="315" width="86" height="24.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GUESS 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKA-p7-ZoB">
+                                <rect key="frame" x="473" y="227" width="86.5" height="24.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -641,9 +641,20 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clue1Label" destination="10L-Nk-Qu9" id="UDR-4e-H3k"/>
+                        <outlet property="clue2Label" destination="iz9-R6-o72" id="TAd-a8-Yl1"/>
+                        <outlet property="clue3Label" destination="Tz9-1A-PJI" id="yYV-HB-UCq"/>
+                        <outlet property="clue4Label" destination="jzP-Do-Wev" id="JXc-f5-IAc"/>
                         <outlet property="descriptionLabel" destination="h9D-VN-QxG" id="1bK-zd-ORK"/>
+                        <outlet property="guess1Label" destination="LNI-6I-vgB" id="R6g-Hc-hNJ"/>
+                        <outlet property="guess2Label" destination="IKA-p7-ZoB" id="LLb-t0-did"/>
+                        <outlet property="guess3Label" destination="u3N-gs-PwG" id="1x2-xo-yG4"/>
+                        <outlet property="guess4Label" destination="fIr-rd-xb1" id="CZZ-Cl-NQB"/>
                         <outlet property="partnerProfilePictureView" destination="AfF-kK-y4b" id="ALd-Qk-moK"/>
                         <outlet property="userProfilePictureView" destination="2C5-Cb-e5f" id="BpH-Ri-P7K"/>
+                        <outlet property="wavelength2Background" destination="zzZ-9G-Loy" id="zuo-EW-uCf"/>
+                        <outlet property="wavelength3Background" destination="NLE-0G-Uap" id="CSK-zq-on9"/>
+                        <outlet property="wavelength4Background" destination="GDf-Ip-tnP" id="RnS-wZ-rV6"/>
                         <outlet property="wordGuessField" destination="g2k-c3-0Am" id="Boa-n4-h5a"/>
                     </connections>
                 </viewController>
