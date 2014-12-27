@@ -288,7 +288,7 @@
                                             <constraint firstItem="Xgn-1I-tdI" firstAttribute="leading" secondItem="UFv-Gi-8UY" secondAttribute="leading" constant="15" id="eeN-uR-HWt"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="faA-mj-5Uf" kind="presentation" identifier="PresentNewGameView" id="aWj-mr-Dm5"/>
+                                            <segue destination="faA-mj-5Uf" kind="presentation" identifier="PresentNewGameViewFromCell" id="aWj-mr-Dm5"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

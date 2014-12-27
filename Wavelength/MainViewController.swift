@@ -37,7 +37,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         } else if segue.identifier == "PresentMenuView" {
             let vc = segue.destinationViewController as MenuViewController
             vc.delegate = self
-        } else if segue.identifier == "PresentNewGameView" {
+        } else if segue.identifier == "PresentNewGameView" || segue.identifier == "PresentNewGameViewFromCell" {
             let vc = segue.destinationViewController as NewGameViewController
             vc.delegate = self
         }
