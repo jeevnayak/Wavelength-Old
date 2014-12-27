@@ -7,7 +7,6 @@
     <customFonts key="customFonts">
         <mutableArray key="Montserrat-Bold.ttf">
             <string>Montserrat-Bold</string>
-            <string>Montserrat-Bold</string>
         </mutableArray>
         <mutableArray key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
@@ -65,22 +64,19 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL3-g0-VHZ">
-                                <rect key="frame" x="0.0" y="207" width="600" height="185"/>
+                                <rect key="frame" x="0.0" y="214" width="600" height="171"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAVELENGTH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKZ-ic-Bjb">
-                                        <rect key="frame" x="200" y="0.0" width="201" height="35"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="28"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="927-Pd-Q67">
+                                        <rect key="frame" x="180" y="0.0" width="240" height="21"/>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A HOPEFULLY AWESOME WORD GAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpi-4W-Sjd">
-                                        <rect key="frame" x="131" y="49" width="339" height="21"/>
+                                        <rect key="frame" x="131" y="36" width="338.5" height="21"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peg-hD-UFJ">
-                                        <rect key="frame" x="157" y="145" width="286" height="39"/>
+                                        <rect key="frame" x="157" y="132" width="286" height="39"/>
                                         <color key="backgroundColor" red="0.40000000000000002" green="0.72156862749999995" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="50" minY="10" maxX="50" maxY="10"/>
@@ -96,19 +92,17 @@
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="peg-hD-UFJ" secondAttribute="centerY" id="7sf-LK-S6M"/>
                                     <constraint firstAttribute="centerY" secondItem="jpi-4W-Sjd" secondAttribute="centerY" id="IVu-le-rXH"/>
+                                    <constraint firstItem="jpi-4W-Sjd" firstAttribute="top" secondItem="927-Pd-Q67" secondAttribute="bottom" constant="15" id="PT3-Lm-F9w"/>
                                     <constraint firstAttribute="centerX" secondItem="peg-hD-UFJ" secondAttribute="centerX" id="Swe-ai-ZOf"/>
                                     <constraint firstItem="peg-hD-UFJ" firstAttribute="top" secondItem="jpi-4W-Sjd" secondAttribute="bottom" constant="75" id="Z8u-LO-01Z"/>
-                                    <constraint firstItem="ZKZ-ic-Bjb" firstAttribute="top" secondItem="RL3-g0-VHZ" secondAttribute="top" id="eIV-1b-09P"/>
-                                    <constraint firstAttribute="centerY" secondItem="ZKZ-ic-Bjb" secondAttribute="centerY" id="fKO-pA-Lek"/>
+                                    <constraint firstItem="927-Pd-Q67" firstAttribute="top" secondItem="RL3-g0-VHZ" secondAttribute="top" id="f10-0A-fso"/>
                                     <constraint firstAttribute="centerX" secondItem="jpi-4W-Sjd" secondAttribute="centerX" id="gKf-EA-SmF"/>
                                     <constraint firstAttribute="bottom" secondItem="peg-hD-UFJ" secondAttribute="bottom" id="hA5-Ml-JXj"/>
-                                    <constraint firstAttribute="centerX" secondItem="ZKZ-ic-Bjb" secondAttribute="centerX" id="icp-Oq-tEI"/>
-                                    <constraint firstItem="jpi-4W-Sjd" firstAttribute="top" secondItem="ZKZ-ic-Bjb" secondAttribute="bottom" constant="15" id="tdm-ae-nHg"/>
+                                    <constraint firstAttribute="centerX" secondItem="927-Pd-Q67" secondAttribute="centerX" id="un4-5i-tfd"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="IVu-le-rXH"/>
-                                        <exclude reference="fKO-pA-Lek"/>
                                         <exclude reference="7sf-LK-S6M"/>
                                     </mask>
                                 </variation>
@@ -167,7 +161,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW GAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAP-ll-ZZa">
-                                <rect key="frame" x="525.5" y="63" width="59.5" height="12.5"/>
+                                <rect key="frame" x="525" y="63" width="59.5" height="12.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -336,6 +330,9 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="1d5-VU-3X6">
+                                <rect key="frame" x="180" y="34" width="240" height="21"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -345,11 +342,13 @@
                             <constraint firstItem="qh6-gM-Pcp" firstAttribute="top" secondItem="yAP-ll-ZZa" secondAttribute="top" id="9SJ-R3-zf8"/>
                             <constraint firstItem="FfW-P3-V4H" firstAttribute="top" secondItem="ZqA-Ob-8EG" secondAttribute="bottom" constant="10" id="AKy-K9-iPH"/>
                             <constraint firstItem="FfW-P3-V4H" firstAttribute="leading" secondItem="qh6-gM-Pcp" secondAttribute="leading" id="Ueq-e7-MoS"/>
+                            <constraint firstItem="1d5-VU-3X6" firstAttribute="centerY" secondItem="FfW-P3-V4H" secondAttribute="centerY" id="XFN-K3-IUq"/>
                             <constraint firstItem="HhU-z1-Nlv" firstAttribute="top" secondItem="ZqA-Ob-8EG" secondAttribute="bottom" constant="60" id="cHY-Sw-MyM"/>
                             <constraint firstItem="yAP-ll-ZZa" firstAttribute="trailing" secondItem="jOO-dk-1FA" secondAttribute="trailing" id="fJF-3Y-B1t"/>
                             <constraint firstAttribute="trailing" secondItem="HhU-z1-Nlv" secondAttribute="trailing" id="fTl-WU-e3b"/>
                             <constraint firstItem="FfW-P3-V4H" firstAttribute="leading" secondItem="RsG-RN-Ang" secondAttribute="leading" constant="15" id="iab-bX-kyf"/>
                             <constraint firstItem="qh6-gM-Pcp" firstAttribute="top" secondItem="FfW-P3-V4H" secondAttribute="bottom" constant="3" id="mEq-cV-oOV"/>
+                            <constraint firstAttribute="centerX" secondItem="1d5-VU-3X6" secondAttribute="centerX" id="s8i-dI-oQ9"/>
                             <constraint firstItem="y1e-4H-7pB" firstAttribute="top" secondItem="HhU-z1-Nlv" secondAttribute="bottom" id="y2A-Z9-rwO"/>
                         </constraints>
                     </view>
@@ -939,6 +938,9 @@
             <point key="canvasLocation" x="1266" y="1536"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo" width="240" height="21"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aWj-mr-Dm5"/>
     </inferredMetricsTieBreakers>
