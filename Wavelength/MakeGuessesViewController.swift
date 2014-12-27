@@ -155,7 +155,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
                 guessLabel.text = round.guesses[i] as? String
                 guessLabel.textColor = UIColor.blackColor()
                 guessLabel.hidden = false
-                wavelengthBackgrounds[i - 1].backgroundColor = UIColor.greenColor()
+                wavelengthBackgrounds[i - 1].backgroundColor = UIColor.lightGreenColor()
                 wavelengthBackgrounds[i - 1].hidden = false
             default:
                 assertionFailure("invalid state for guess \(i): \(guessState)")

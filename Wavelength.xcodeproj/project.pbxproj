@@ -13,6 +13,8 @@
 		131BD3EA1A4BDD5200FB3016 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 131BD3E91A4BDD5200FB3016 /* ParseFacebookUtils.framework */; };
 		131BD3EC1A4CC81000FB3016 /* MakeGuessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131BD3EB1A4CC81000FB3016 /* MakeGuessesViewController.swift */; };
 		131BD3EE1A4DE76C00FB3016 /* NewGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131BD3ED1A4DE76C00FB3016 /* NewGameCell.swift */; };
+		131BD4221A4E981C00FB3016 /* AnimatingSineWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131BD4211A4E981C00FB3016 /* AnimatingSineWaveView.swift */; };
+		131BD4251A4E9C2200FB3016 /* UIColor+Wavelength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131BD4241A4E9C2200FB3016 /* UIColor+Wavelength.swift */; };
 		132923131A3C0CDA000BA423 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132923121A3C0CDA000BA423 /* AppDelegate.swift */; };
 		132923181A3C0CDA000BA423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 132923161A3C0CDA000BA423 /* Main.storyboard */; };
 		1329231A1A3C0CDA000BA423 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132923191A3C0CDA000BA423 /* Images.xcassets */; };
@@ -62,6 +64,8 @@
 		131BD3E91A4BDD5200FB3016 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		131BD3EB1A4CC81000FB3016 /* MakeGuessesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeGuessesViewController.swift; sourceTree = "<group>"; };
 		131BD3ED1A4DE76C00FB3016 /* NewGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameCell.swift; sourceTree = "<group>"; };
+		131BD4211A4E981C00FB3016 /* AnimatingSineWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatingSineWaveView.swift; sourceTree = "<group>"; };
+		131BD4241A4E9C2200FB3016 /* UIColor+Wavelength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Wavelength.swift"; sourceTree = "<group>"; };
 		1329230D1A3C0CDA000BA423 /* Wavelength.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wavelength.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		132923111A3C0CDA000BA423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		132923121A3C0CDA000BA423 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +138,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131BD4231A4E9AAE00FB3016 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				131BD4241A4E9C2200FB3016 /* UIColor+Wavelength.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		132923041A3C0CDA000BA423 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +168,7 @@
 		1329230F1A3C0CDA000BA423 /* Wavelength */ = {
 			isa = PBXGroup;
 			children = (
+				131BD4231A4E9AAE00FB3016 /* Utilities */,
 				2197AB801A47FC5000C5777E /* Resources */,
 				133200581A465FD500713DD5 /* Views */,
 				1332004F1A4642AF00713DD5 /* Models */,
@@ -248,6 +261,7 @@
 				1332005B1A4661D800713DD5 /* GameCell.swift */,
 				1307C51C1A46992F00429722 /* GameListHeaderView.swift */,
 				131BD3ED1A4DE76C00FB3016 /* NewGameCell.swift */,
+				131BD4211A4E981C00FB3016 /* AnimatingSineWaveView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -399,8 +413,10 @@
 				133200551A464C6F00713DD5 /* MainViewController.swift in Sources */,
 				1307C51D1A46992F00429722 /* GameListHeaderView.swift in Sources */,
 				133200571A465A9200713DD5 /* NewGameViewController.swift in Sources */,
+				131BD4221A4E981C00FB3016 /* AnimatingSineWaveView.swift in Sources */,
 				1332005C1A4661D800713DD5 /* GameCell.swift in Sources */,
 				13DC07801A4BA7D7004E6A68 /* GiveCluesViewController.swift in Sources */,
+				131BD4251A4E9C2200FB3016 /* UIColor+Wavelength.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
