@@ -22,6 +22,8 @@ class Round: PFObject, PFSubclassing {
         case Empty
         case Incorrect
         case Correct
+        case WavelengthIncorrect
+        case WavelengthCorrect
     }
 
     @NSManaged var game: Game
@@ -159,12 +161,20 @@ class Round: PFObject, PFSubclassing {
         }
 
         let index = guesses.count
-        var isGuessCorrect: Bool
+        var result: GuessResult
         switch guessStates()[index] {
         case .Pending:
-            isGuessCorrect = (normalize(guess) == normalize(word))
+            if normalize(guess) == normalize(word) {
+                result = GuessResult.Correct
+            } else {
+                result = GuessResult.Incorrect
+            }
         case .WavelengthPending:
-            isGuessCorrect = (normalize(guess) == normalize(clues[index] as String))
+            if normalize(guess) == normalize(clues[index] as String) {
+                result = GuessResult.WavelengthCorrect
+            } else {
+                result = GuessResult.WavelengthIncorrect
+            }
         default:
             assertionFailure("invalid state for submitted guess \(index): \(guessStates()[index])")
         }
@@ -177,7 +187,7 @@ class Round: PFObject, PFSubclassing {
         guesses = newGuesses
         saveInBackgroundWithTarget(nil, selector: nil)
 
-        return isGuessCorrect ? GuessResult.Correct : GuessResult.Incorrect
+        return result
     }
 
     func wasWon() -> Bool {

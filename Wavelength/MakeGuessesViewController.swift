@@ -69,6 +69,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let guessResult = round.submitGuess(textField.text)
+        // TODO(rajeev): figure out when to toast and what the text should be
         switch guessResult {
         case .Empty:
             let alert = UIAlertController(title: "Invalid", message: "You must make a guess", preferredStyle: UIAlertControllerStyle.Alert)
@@ -76,13 +77,13 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
             presentViewController(alert, animated: true, completion: nil)
             return false
         case .Incorrect:
-            let alert = UIAlertController(title: "Incorrect", message: "Maybe next time.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            showWavelengthToastWithText("INCORRECT")
         case .Correct:
-            let alert = UIAlertController(title: "Correct", message: "Good job!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            showWavelengthToastWithText("NAILED IT")
+        case .WavelengthIncorrect:
+            showWavelengthToastWithText("INCORRECT")
+        case .WavelengthCorrect:
+            showWavelengthToastWithText("WAVELENGTH")
         }
 
         reloadData()
@@ -175,5 +176,31 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
             ret += "_ "
         }
         return ret
+    }
+
+    func showWavelengthToastWithText(toastText: String) {
+        let background = UIImage(named: "WavelengthToast")!
+        // TODO(rajeev): the y-offset is hardcoded here, maybe it should be centered (taking into account the keyboard)
+        let container: UIView = UIView(frame: CGRectMake((view.frame.width - background.size.width) / 2, 125, background.size.width, background.size.height))
+        container.addSubview(UIImageView(image: background))
+
+        let label = UILabel(frame: container.bounds)
+        label.font = UIFont(name: "Montserrat-Bold", size: 32)
+        label.text = toastText
+        label.textAlignment = NSTextAlignment.Center
+        container.addSubview(label)
+
+        view.addSubview(container)
+
+        container.transform = CGAffineTransformMakeScale(0, 0)
+        UIView.animateWithDuration(0.75, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: UIViewAnimationOptions.allZeros, animations: { () -> Void in
+            container.transform = CGAffineTransformMakeScale(1, 1)
+        }) { (complete) -> Void in
+            UIView.animateWithDuration(0.2, delay: 0.25, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+                container.transform = CGAffineTransformMakeTranslation(container.frame.width, 0)
+            }, completion: { (complete) -> Void in
+                container.removeFromSuperview()
+            })
+        }
     }
 }
