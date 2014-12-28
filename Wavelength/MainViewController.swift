@@ -46,23 +46,19 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     // MARK: UICollectionViewDataSource
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        if let waitingGames = waitingGames {
-            if waitingGames.count > 0 {
-                return 2
-            }
+        if waitingGames != nil && !waitingGames.isEmpty {
+            return 2
+        } else if actionableGames != nil {
+            return 1
+        } else {
+            return 0
         }
-
-        return 1
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            if noActionableGames() {
-                // there should still be one item for the create new game cell
-                return 1
-            } else {
-                return actionableGames.count
-            }
+            // if there are no actionable games, there should still be one item for the create new game cell
+            return max(actionableGames.count, 1)
         } else {
             return waitingGames.count
         }
@@ -74,8 +70,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "GameListHeaderView", forIndexPath: indexPath) as GameListHeaderView
         if indexPath.section == 0 {
             headerView.turnLabel.text = "YOUR TURN"
-            headerView.currentStreakLabel.hidden = noActionableGames()
-            headerView.levelLabel.hidden = noActionableGames()
+            headerView.currentStreakLabel.hidden = actionableGames.isEmpty
+            headerView.levelLabel.hidden = actionableGames.isEmpty
         } else {
             headerView.turnLabel.text = "THEIR TURN"
             headerView.currentStreakLabel.hidden = false
@@ -228,11 +224,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         })
     }
 
-    func noActionableGames() -> Bool {
-        return (actionableGames == nil) || (actionableGames.count == 0)
-    }
-
     func isNewGameCellAtIndexPath(indexPath: NSIndexPath) -> Bool {
-        return indexPath.section == 0 && noActionableGames()
+        return indexPath.section == 0 && actionableGames.isEmpty
     }
 }
