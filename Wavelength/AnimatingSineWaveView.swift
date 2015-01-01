@@ -12,12 +12,30 @@ class AnimatingSineWaveView: UIView {
     let kBarWidth = CGFloat(13)
     let kWavelength = 2 * CGFloat(M_PI)
 
-    /** Percent of the view height that the largest bar will occupy */
-    var amplitude = CGFloat(0.5)
+    let kDefaultMinBarHeight = CGFloat(0)
+    let kDefaultAmplitude = CGFloat(0.5)
+    let kDefaultFrequency = CGFloat(2)
+    let kDefaultSpeed = CGFloat(2)
+    let kDefaultColor = UIColor.lightGreenColor()
+
+    /** Percent of the view height that the smallest bar will occupy */
+    var minBarHeight: CGFloat
+    /** Percent of the view height that the sine wave occupies. This means the largest bar's height will be (minBarHeight + amplitude) * view.height */
+    var amplitude: CGFloat
     /** Number of full sin waves that will occupy the view width */
-    var frequency = CGFloat(2)
+    var frequency: CGFloat
     /** Number of seconds it takes to get through one full sin wave */
-    var speed = CGFloat(2)
+    var speed: CGFloat
+    /** Color of the animating bars */
+    var color: UIColor
+
+    var transformationStartTime: CFTimeInterval?
+    var transformationTimeCheckpoints: [CFTimeInterval]?
+    var transformationMinBarHeightCheckpoints: [CGFloat]?
+    var transformationAmplitudeCheckpoints: [CGFloat]?
+    var transformationFrequencyCheckpoints: [CGFloat]?
+    var transformationSpeedCheckpoints: [CGFloat]?
+    var transformationColorCheckpoints: [UIColor]?
 
     var displayLink: CADisplayLink!
     var animationStarted = false
@@ -25,7 +43,14 @@ class AnimatingSineWaveView: UIView {
     var sinXOffset = CGFloat(0)
 
     required init(coder aDecoder: NSCoder) {
+        minBarHeight = kDefaultMinBarHeight
+        amplitude = kDefaultAmplitude
+        frequency = kDefaultFrequency
+        speed = kDefaultSpeed
+        color = kDefaultColor
+
         super.init(coder: aDecoder)
+
         backgroundColor = UIColor.clearColor()
         displayLink = CADisplayLink(target: self, selector: "setNeedsDisplay")
     }
@@ -36,6 +61,8 @@ class AnimatingSineWaveView: UIView {
             animationStarted = true
             return
         }
+
+        interpolateTransformationPropertiesIfNecessary()
 
         if lastDrawTime == 0 {
             lastDrawTime = displayLink.timestamp
@@ -50,7 +77,7 @@ class AnimatingSineWaveView: UIView {
 
         let middle = rect.width / 2
         let ctx = UIGraphicsGetCurrentContext()
-        UIColor.lightGreenColor().set()
+        color.set()
 
         // draw the left half bars from left to right
         var x = kBarSpacing
@@ -79,6 +106,114 @@ class AnimatingSineWaveView: UIView {
         // then add 1 and divide by two to transform the sin function output range from [-1, 1] to [0, 1])
         let barHeightPercent = (sin(frequencyAdjustedX + sinXOffset) + 1) / 2
 
-        CGContextFillRect(ctx, CGRectMake(x, 0, kBarWidth, barHeightPercent * viewRect.height * amplitude))
+        CGContextFillRect(ctx, CGRectMake(x, 0, kBarWidth, (minBarHeight + barHeightPercent * amplitude) * viewRect.height))
+    }
+
+    func transformSineWaveWithTimeCheckpoints(timeCheckpoints: [CFTimeInterval], minBarHeightCheckpoints: [CGFloat]?, amplitudeCheckpoints: [CGFloat]?, frequencyCheckpoints: [CGFloat]?, speedCheckpoints: [CGFloat]?, colorCheckpoints: [UIColor]?) {
+        transformationStartTime = displayLink.timestamp
+        transformationTimeCheckpoints = [CFTimeInterval(0)] + timeCheckpoints
+        if let minBarHeightCheckpoints = minBarHeightCheckpoints {
+            transformationMinBarHeightCheckpoints = [minBarHeight] + minBarHeightCheckpoints
+        } else {
+            transformationMinBarHeightCheckpoints = nil
+        }
+        if let amplitudeCheckpoints = amplitudeCheckpoints {
+            transformationAmplitudeCheckpoints = [amplitude] + amplitudeCheckpoints
+        } else {
+            transformationAmplitudeCheckpoints = nil
+        }
+        if let frequencyCheckpoints = frequencyCheckpoints {
+            transformationFrequencyCheckpoints = [frequency] + frequencyCheckpoints
+        } else {
+            transformationFrequencyCheckpoints = nil
+        }
+        if let speedCheckpoints = speedCheckpoints {
+            transformationSpeedCheckpoints = [speed] + speedCheckpoints
+        } else {
+            transformationSpeedCheckpoints = nil
+        }
+        if let colorCheckpoints = colorCheckpoints {
+            transformationColorCheckpoints = [color] + colorCheckpoints
+        } else {
+            transformationColorCheckpoints = nil
+        }
+    }
+
+    func interpolateTransformationPropertiesIfNecessary() {
+        if transformationStartTime == nil {
+            return
+        }
+
+        let transformationElapsedTime = displayLink.timestamp - transformationStartTime!
+        var prevTimeCheckpoint = CFTimeInterval(0)
+        var prevCheckpointIndex = 0
+        var nextTimeCheckpoint: CFTimeInterval?
+        var nextCheckpointIndex: Int?
+        for (i, timeCheckpoint) in enumerate(transformationTimeCheckpoints!) {
+            if timeCheckpoint < transformationElapsedTime {
+                prevTimeCheckpoint = timeCheckpoint
+                prevCheckpointIndex = i
+            } else {
+                nextTimeCheckpoint = timeCheckpoint
+                nextCheckpointIndex = i
+                break
+            }
+        }
+
+        if let nextTimeCheckpoint = nextTimeCheckpoint {
+            let fraction = CGFloat(transformationElapsedTime - prevTimeCheckpoint) / CGFloat(nextTimeCheckpoint - prevTimeCheckpoint)
+            if let minBarHeightCheckpoints = transformationMinBarHeightCheckpoints {
+                minBarHeight = interpolateFloatBetween(minBarHeightCheckpoints[prevCheckpointIndex], and: minBarHeightCheckpoints[nextCheckpointIndex!], withFraction: fraction)
+            }
+            if let amplitudeCheckpoints = transformationAmplitudeCheckpoints {
+                amplitude = interpolateFloatBetween(amplitudeCheckpoints[prevCheckpointIndex], and: amplitudeCheckpoints[nextCheckpointIndex!], withFraction: fraction)
+            }
+            if let frequencyCheckpoints = transformationFrequencyCheckpoints {
+                frequency = interpolateFloatBetween(frequencyCheckpoints[prevCheckpointIndex], and: frequencyCheckpoints[nextCheckpointIndex!], withFraction: fraction)
+            }
+            if let speedCheckpoints = transformationSpeedCheckpoints {
+                speed = interpolateFloatBetween(speedCheckpoints[prevCheckpointIndex], and: speedCheckpoints[nextCheckpointIndex!], withFraction: fraction)
+            }
+            if let colorCheckpoints = transformationColorCheckpoints {
+                color = interpolateColorBetween(colorCheckpoints[prevCheckpointIndex], and: colorCheckpoints[nextCheckpointIndex!], withFraction: fraction)
+            }
+        } else {
+            if let minBarHeightCheckpoints = transformationMinBarHeightCheckpoints {
+                minBarHeight = minBarHeightCheckpoints.last!
+            }
+            if let amplitudeCheckpoints = transformationAmplitudeCheckpoints {
+                amplitude = amplitudeCheckpoints.last!
+            }
+            if let frequencyCheckpoints = transformationFrequencyCheckpoints {
+                frequency = frequencyCheckpoints.last!
+            }
+            if let speedCheckpoints = transformationSpeedCheckpoints {
+                speed = speedCheckpoints.last!
+            }
+            if let colorCheckpoints = transformationColorCheckpoints {
+                color = colorCheckpoints.last!
+            }
+
+            transformationStartTime = nil
+        }
+    }
+
+    func interpolateFloatBetween(start: CGFloat, and end: CGFloat, withFraction fraction: CGFloat) -> CGFloat {
+        if fraction < 0.5 {
+            return 2 * fraction * fraction * (end - start) + start
+        } else {
+            return (2 * fraction * fraction - 4 * fraction + 1) * (start - end) + start
+        }
+    }
+
+    func interpolateColorBetween(start: UIColor, and end: UIColor, withFraction fraction: CGFloat) -> UIColor {
+        let startComponents = CGColorGetComponents(start.CGColor)
+        let endComponents = CGColorGetComponents(end.CGColor)
+        let red = interpolateFloatBetween(startComponents[0], and: endComponents[0], withFraction: fraction)
+        let green = interpolateFloatBetween(startComponents[1], and: endComponents[1], withFraction: fraction)
+        let blue = interpolateFloatBetween(startComponents[2], and: endComponents[2], withFraction: fraction)
+        let alpha = interpolateFloatBetween(startComponents[3], and: endComponents[3], withFraction: fraction)
+
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 }

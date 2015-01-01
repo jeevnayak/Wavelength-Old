@@ -768,6 +768,7 @@
                         <outlet property="guess4Label" destination="fIr-rd-xb1" id="CZZ-Cl-NQB"/>
                         <outlet property="partnerProfilePictureView" destination="AfF-kK-y4b" id="ALd-Qk-moK"/>
                         <outlet property="userProfilePictureView" destination="2C5-Cb-e5f" id="BpH-Ri-P7K"/>
+                        <outlet property="waveView" destination="wIp-bf-bhC" id="DW0-aG-9fb"/>
                         <outlet property="wavelength2Background" destination="zzZ-9G-Loy" id="zuo-EW-uCf"/>
                         <outlet property="wavelength2GuessField" destination="6Bp-lw-uWP" id="hhE-PC-TlU"/>
                         <outlet property="wavelength3Background" destination="NLE-0G-Uap" id="CSK-zq-on9"/>

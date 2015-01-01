@@ -13,6 +13,7 @@ protocol MakeGuessesDelegate {
 
 class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var waveView: AnimatingSineWaveView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var partnerProfilePictureView: FBProfilePictureView!
     @IBOutlet weak var userProfilePictureView: FBProfilePictureView!
@@ -80,10 +81,12 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
             showWavelengthToastWithText("INCORRECT")
         case .Correct:
             showWavelengthToastWithText("NAILED IT")
+            animateSineWaveForCorrectAnswer()
         case .WavelengthIncorrect:
             showWavelengthToastWithText("INCORRECT")
         case .WavelengthCorrect:
             showWavelengthToastWithText("WAVELENGTH")
+            animateSineWaveForCorrectAnswer()
         }
 
         reloadData()
@@ -202,5 +205,12 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
                 container.removeFromSuperview()
             })
         }
+    }
+
+    func animateSineWaveForCorrectAnswer() {
+        let amplitude = waveView.kDefaultAmplitude * 2
+        let speed = waveView.kDefaultSpeed / 2
+        let color = UIColor.blueColor()
+        waveView.transformSineWaveWithTimeCheckpoints([CFTimeInterval(1), CFTimeInterval(1.5), CFTimeInterval(2.5)], minBarHeightCheckpoints: nil, amplitudeCheckpoints: [amplitude, amplitude, waveView.kDefaultAmplitude], frequencyCheckpoints: nil, speedCheckpoints: [speed, speed, waveView.kDefaultSpeed], colorCheckpoints: [color, color, waveView.kDefaultColor])
     }
 }
