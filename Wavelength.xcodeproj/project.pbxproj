@@ -553,6 +553,7 @@
 				INFOPLIST_FILE = Wavelength/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c5ea332d-6607-4cb0-aeff-abc4b54690aa";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wavelength/Wavelength-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -572,6 +573,7 @@
 				INFOPLIST_FILE = Wavelength/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c5ea332d-6607-4cb0-aeff-abc4b54690aa";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wavelength/Wavelength-Bridging-Header.h";
 			};
 			name = Release;

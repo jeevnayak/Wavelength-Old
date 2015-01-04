@@ -195,6 +195,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
                         Round.newRoundInGame(game, index: 0, block: { (newRound, error) -> Void in
                             if error == nil {
                                 self.actionableGames.append(game)
+                                self.partnerFbIds.append(game.getPartnerFbId(PFUser.currentUser()))
                                 self.gamesCollectionView.reloadData()
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             } else {
