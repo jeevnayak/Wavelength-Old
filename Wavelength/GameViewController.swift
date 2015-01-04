@@ -58,11 +58,8 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
                     }
 
                     if self.currentRound.wereCluesGiven() {
-                        if self.prevRound.replayed.boolValue {
-                            self.showMakeGuessesView()
-                        } else {
-                            //                            self.performSegueWithIdentifier("ShowReplayGuessesView", sender: self)
-                        }
+                        // TODO(rajeev): show replay view if prevRound was not replayed yet
+                        self.showMakeGuessesView()
                     } else {
                         assert(!self.prevRound.replayed.boolValue, "previous round must not have been replayed if clues need to be given")
                         self.showGiveCluesView()
