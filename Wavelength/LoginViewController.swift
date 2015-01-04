@@ -12,8 +12,7 @@ class LoginViewController: UIViewController {
         let permissions = ["public_profile", "user_friends", "email"]
         PFFacebookUtils.logInWithPermissions(permissions, { (user: PFUser!, error: NSError!) -> Void in
             if user == nil {
-                // TODO(rajeev): handle error
-                NSLog("Facebook login cancelled")
+                Helpers.showNetworkErrorDialogFromViewController(self)
             } else {
                 FBRequestConnection.startForMeWithCompletionHandler({ (connection, result, error) -> Void in
                     if error == nil {
@@ -23,7 +22,12 @@ class LoginViewController: UIViewController {
                         PFUser.currentUser().setObject(result["last_name"], forKey: "lastName")
                         PFUser.currentUser().saveInBackgroundWithTarget(nil, selector: nil)
                     } else {
-                        // TODO(rajeev): handle error
+                        // log the user out, show the login screen again, and pop up the network error dialog
+                        PFUser.logOut()
+                        let appDelegate = UIApplication.sharedApplication().delegate
+                        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("LoginViewController") as? UIViewController
+                        appDelegate?.window??.rootViewController = vc
+                        Helpers.showNetworkErrorDialogFromViewController(self)
                     }
                 })
 

@@ -49,14 +49,19 @@ class GiveCluesViewController: UIViewController {
             presentViewController(alert, animated: true, completion: nil)
         } else {
             round.clues = [clue1, clue2, clue3, clue4]
+            // TODO(rajeev): modifying the round and game together should be atomic
             round.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
                 if error == nil {
                     self.game.currentPlayer = self.game.getPartner(PFUser.currentUser())
                     self.game.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
                         if error == nil {
                             self.delegate?.giveCluesDone(self)
+                        } else {
+                            Helpers.showNetworkErrorDialogFromViewController(self)
                         }
                     })
+                } else {
+                    Helpers.showNetworkErrorDialogFromViewController(self)
                 }
             })
         }

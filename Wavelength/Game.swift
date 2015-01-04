@@ -28,7 +28,7 @@ class Game: PFObject, PFSubclassing {
         return "Game"
     }
 
-    class func getGamesForUser(user: PFUser, block: (actionableGames: [Game], waitingGames: [Game]) -> Void) {
+    class func getGamesForUser(user: PFUser, block: (actionableGames: [Game], waitingGames: [Game], error: NSError?) -> Void) {
         let query = Game.query()
         query.whereKey("player1", equalTo: user)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
@@ -46,9 +46,13 @@ class Game: PFObject, PFSubclassing {
                                 waitingGames.append(game)
                             }
                         }
-                        block(actionableGames: actionableGames, waitingGames: waitingGames)
+                        block(actionableGames: actionableGames, waitingGames: waitingGames, error: nil)
+                    } else {
+                        block(actionableGames: [], waitingGames: [], error: error2)
                     }
                 })
+            } else {
+                block(actionableGames: [], waitingGames: [], error: error)
             }
         }
     }

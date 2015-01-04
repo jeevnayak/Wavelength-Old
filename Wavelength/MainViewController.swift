@@ -189,13 +189,20 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
                 game.currentRoundIndex = 0
                 game.currentPlayer = PFUser.currentUser()
                 game.currentStreak = 0
+                // TODO(rajeev): modifying the round and game together should be atomic
                 game.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-                    if succeeded {
-                        Round.newRoundInGame(game, index: 0, block: { (newRound) -> Void in
-                            self.actionableGames.append(game)
-                            self.gamesCollectionView.reloadData()
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                    if error == nil {
+                        Round.newRoundInGame(game, index: 0, block: { (newRound, error) -> Void in
+                            if error == nil {
+                                self.actionableGames.append(game)
+                                self.gamesCollectionView.reloadData()
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            } else {
+                                Helpers.showNetworkErrorDialogFromViewController(self)
+                            }
                         })
+                    } else {
+                        Helpers.showNetworkErrorDialogFromViewController(self)
                     }
                 }
             }
@@ -213,14 +220,18 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     // MARK: helpers
 
     func reloadGames() {
-        Game.getGamesForUser(PFUser.currentUser(), block: { (actionableGames, waitingGames) -> Void in
-            self.actionableGames = actionableGames
-            self.waitingGames = waitingGames
-            self.partnerFbIds = []
-            for game in (actionableGames + waitingGames) {
-                self.partnerFbIds.append(game.getPartnerFbId(PFUser.currentUser()))
+        Game.getGamesForUser(PFUser.currentUser(), block: { (actionableGames, waitingGames, error) -> Void in
+            if error == nil {
+                self.actionableGames = actionableGames
+                self.waitingGames = waitingGames
+                self.partnerFbIds = []
+                for game in (actionableGames + waitingGames) {
+                    self.partnerFbIds.append(game.getPartnerFbId(PFUser.currentUser()))
+                }
+                self.gamesCollectionView.reloadData()
+            } else {
+                Helpers.showNetworkErrorDialogFromViewController(self)
             }
-            self.gamesCollectionView.reloadData()
         })
     }
 

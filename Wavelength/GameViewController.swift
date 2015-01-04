@@ -37,6 +37,9 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
                     } else {
                         self.showGiveCluesView()
                     }
+                } else {
+                    self.delegate?.gameTurnCancelled(self, game: self.game)
+                    Helpers.showNetworkErrorDialogFromViewController(self)
                 }
             }
         } else {
@@ -64,6 +67,9 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
                         assert(!self.prevRound.replayed.boolValue, "previous round must not have been replayed if clues need to be given")
                         self.showGiveCluesView()
                     }
+                } else {
+                    self.delegate?.gameTurnCancelled(self, game: self.game)
+                    Helpers.showNetworkErrorDialogFromViewController(self)
                 }
             })
         }
@@ -77,19 +83,24 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
 
     func makeGuessesDone(sender: AnyObject!) {
         removeChildViewControllers()
-        Round.newRoundInGame(game, index: currentRound.index + 1) { (newRound) -> Void in
-            self.prevRound = self.currentRound
-            self.currentRound = newRound
+        // TODO(rajeev): modifying the round and game together should be atomic
+        Round.newRoundInGame(game, index: currentRound.index + 1) { (newRound, error) -> Void in
+            if error == nil {
+                self.prevRound = self.currentRound
+                self.currentRound = newRound
 
-            self.game.currentRoundIndex += 1
-            if self.prevRound.wasWon() {
-                self.game.currentStreak++
+                self.game.currentRoundIndex += 1
+                if self.prevRound.wasWon() {
+                    self.game.currentStreak++
+                } else {
+                    self.game.currentStreak = 0
+                }
+                self.game.saveInBackgroundWithTarget(nil, selector: nil)
+
+                self.showGiveCluesView()
             } else {
-                self.game.currentStreak = 0
+                Helpers.showNetworkErrorDialogFromViewController(self)
             }
-            self.game.saveInBackgroundWithTarget(nil, selector: nil)
-
-            self.showGiveCluesView()
         }
     }
 
