@@ -13,6 +13,7 @@ class GameCell : UICollectionViewCell {
     @IBOutlet weak var partnerNameLabel: UILabel!
     @IBOutlet weak var currentStreakLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var rightCaret: UIImageView!
 
     var game: Game! {
         didSet {
@@ -29,6 +30,7 @@ class GameCell : UICollectionViewCell {
         } else {
             currentStreakLabel.text = "\(game.currentStreak) GAMES"
         }
+        rightCaret.hidden = !(game.currentPlayer.objectId == user.objectId)
     }
 
     func highlight() {

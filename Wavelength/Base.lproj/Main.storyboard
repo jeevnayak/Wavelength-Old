@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vck-g4-OjQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -206,7 +207,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 GAMES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ho7-fF-4wi">
-                                                            <rect key="frame" x="425" y="21" width="70" height="19"/>
+                                                            <rect key="frame" x="425" y="21" width="69.5" height="18.5"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -217,12 +218,17 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MarkCaret" translatesAutoresizingMaskIntoConstraints="NO" id="j9K-TO-siC">
+                                                            <rect key="frame" x="571" y="22" width="9" height="16"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="centerY" secondItem="26V-Az-ySB" secondAttribute="centerY" id="5y6-0w-aOH"/>
                                                         <constraint firstAttribute="centerY" secondItem="FL7-Gs-BW5" secondAttribute="centerY" id="8Ir-bW-RWV"/>
                                                         <constraint firstAttribute="height" constant="60" id="Dfg-pt-77b"/>
+                                                        <constraint firstItem="j9K-TO-siC" firstAttribute="centerY" secondItem="Kb5-gI-uFT" secondAttribute="centerY" id="K1e-X5-BMl"/>
+                                                        <constraint firstAttribute="trailing" secondItem="j9K-TO-siC" secondAttribute="trailing" constant="20" id="PiR-Vl-EI1"/>
                                                         <constraint firstAttribute="centerY" secondItem="Kb5-gI-uFT" secondAttribute="centerY" id="QYT-bu-bjl"/>
                                                         <constraint firstItem="FL7-Gs-BW5" firstAttribute="leading" secondItem="emU-dv-O8K" secondAttribute="leading" constant="15" id="blE-2W-2IM"/>
                                                         <constraint firstAttribute="trailing" secondItem="26V-Az-ySB" secondAttribute="trailing" constant="45" id="fz8-yh-db6"/>
@@ -249,6 +255,7 @@
                                             <outlet property="levelLabel" destination="26V-Az-ySB" id="Qd4-65-B2G"/>
                                             <outlet property="partnerNameLabel" destination="Kb5-gI-uFT" id="yVa-re-fqG"/>
                                             <outlet property="partnerProfilePictureView" destination="FL7-Gs-BW5" id="TeZ-J2-ejK"/>
+                                            <outlet property="rightCaret" destination="j9K-TO-siC" id="uOX-nm-oyw"/>
                                             <segue destination="dYO-ls-TfF" kind="showDetail" identifier="ShowGameView" id="deh-Vy-4ph"/>
                                         </connections>
                                     </collectionViewCell>
@@ -260,21 +267,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="START A NEW GAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajj-Uf-q8s">
-                                                    <rect key="frame" x="397" y="21" width="158" height="19"/>
+                                                    <rect key="frame" x="397" y="21" width="157.5" height="18.5"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO GAMES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgn-1I-tdI">
-                                                    <rect key="frame" x="15" y="21" width="86" height="19"/>
+                                                    <rect key="frame" x="15" y="21" width="86" height="18.5"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MarkCaret" translatesAutoresizingMaskIntoConstraints="NO" id="K2V-pj-ePr">
+                                                    <rect key="frame" x="568" y="23" width="9" height="16"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="K2V-pj-ePr" firstAttribute="centerY" secondItem="Xgn-1I-tdI" secondAttribute="centerY" id="3Rv-en-qWg"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="K2V-pj-ePr" secondAttribute="trailing" constant="15" id="5ZN-C9-ggT"/>
                                             <constraint firstAttribute="trailing" secondItem="ajj-Uf-q8s" secondAttribute="trailing" constant="45" id="9Lq-YJ-Lci"/>
                                             <constraint firstAttribute="centerY" secondItem="Xgn-1I-tdI" secondAttribute="centerY" id="ALd-J1-7GH"/>
                                             <constraint firstAttribute="centerY" secondItem="ajj-Uf-q8s" secondAttribute="centerY" id="X6f-jE-WMP"/>
@@ -432,7 +444,7 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2Du-Jl-dKJ">
                                 <rect key="frame" x="239" y="299" width="150" height="2"/>
                             </progressView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ATO-07-sis">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ATO-07-sis">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -1021,6 +1033,7 @@
         <image name="ButtonNew" width="50" height="30"/>
         <image name="Logo" width="240" height="21"/>
         <image name="LogoSmall" width="180" height="16"/>
+        <image name="MarkCaret" width="9" height="16"/>
         <image name="MarkCheck" width="15" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
