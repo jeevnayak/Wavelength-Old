@@ -13,6 +13,7 @@ protocol MakeGuessesDelegate {
 
 class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var waveView: AnimatingSineWaveView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var partnerProfilePictureView: FBProfilePictureView!
@@ -47,6 +48,9 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
 
         clueLabels = [clue1Label, clue2Label, clue3Label, clue4Label]
         guessLabels = [guess1Label, guess2Label, guess3Label, guess4Label]
@@ -102,6 +106,16 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func onDoneButtonTap(sender: AnyObject) {
         delegate?.makeGuessesDone(self)
+    }
+
+    func keyboardWasShown(aNotification: NSNotification) {
+        let info = aNotification.userInfo!
+        let kbSize = info[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().size
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, kbSize.height, 0)
+    }
+
+    func keyboardWillHide(aNotification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsetsZero
     }
 
     // MARK: helpers
