@@ -19,6 +19,8 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var partnerProfilePictureView: FBProfilePictureView!
     @IBOutlet weak var userProfilePictureView: FBProfilePictureView!
     @IBOutlet weak var wordGuessField: UITextField!
+    @IBOutlet weak var wordLabel: UILabel!
+    @IBOutlet weak var wordIcon: UIImageView!
     @IBOutlet weak var clue1Label: UILabel!
     @IBOutlet weak var clue2Label: UILabel!
     @IBOutlet weak var clue3Label: UILabel!
@@ -27,6 +29,10 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var guess2Label: UILabel!
     @IBOutlet weak var guess3Label: UILabel!
     @IBOutlet weak var guess4Label: UILabel!
+    @IBOutlet weak var guess1Icon: UIImageView!
+    @IBOutlet weak var guess2Icon: UIImageView!
+    @IBOutlet weak var guess3Icon: UIImageView!
+    @IBOutlet weak var guess4Icon: UIImageView!
     @IBOutlet weak var wavelength2GuessField: UITextField!
     @IBOutlet weak var wavelength3GuessField: UITextField!
     @IBOutlet weak var wavelength4GuessField: UITextField!
@@ -41,6 +47,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
     var clueLabels: [UILabel]!
     var guessLabels: [UILabel]!
+    var guessIcons: [UIImageView]!
     var wavelengthGuessFields: [UITextField]!
     var wavelengthBackgrounds: [UIView]!
 
@@ -54,6 +61,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
         clueLabels = [clue1Label, clue2Label, clue3Label, clue4Label]
         guessLabels = [guess1Label, guess2Label, guess3Label, guess4Label]
+        guessIcons = [guess1Icon, guess2Icon, guess3Icon, guess4Icon]
         wavelengthGuessFields = [wavelength2GuessField, wavelength3GuessField, wavelength4GuessField]
         wavelengthBackgrounds = [wavelength2Background, wavelength3Background, wavelength4Background]
 
@@ -61,6 +69,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
         descriptionLabel.text = "GUESS \(partnerFirstName)'S WORD"
         partnerProfilePictureView.profileID = game.getPartnerFbId(PFUser.currentUser())
         userProfilePictureView.profileID = PFUser.currentUser().objectForKey("fbId") as String
+        wordLabel.text = round.word
 
         wordGuessField.delegate = self
         for wavelengthGuessField in wavelengthGuessFields {
@@ -123,17 +132,22 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     func reloadData() {
         wordGuessField.text = ""
         wordGuessField.hidden = false
+        wordLabel.hidden = true
+        wordIcon.hidden = true
         for (i, clueLabel) in enumerate(clueLabels) {
             clueLabel.text = round.clues[i] as? String
             clueLabel.hidden = false
         }
-        for (i, guessLabel) in enumerate(guessLabels) {
+        for guessLabel in guessLabels {
             guessLabel.hidden = true
         }
-        for (i, wavelengthGuessField) in enumerate(wavelengthGuessFields) {
+        for guessIcon in guessIcons {
+            guessIcon.hidden = true
+        }
+        for wavelengthGuessField in wavelengthGuessFields {
             wavelengthGuessField.hidden = true
         }
-        for (i, wavelengthBackground) in enumerate(wavelengthBackgrounds) {
+        for wavelengthBackground in wavelengthBackgrounds {
             wavelengthBackground.hidden = true
         }
         doneButton.hidden = true
@@ -144,6 +158,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
         for (i, guessState) in enumerate(guessStates) {
             let clueLabel = clueLabels[i]
             let guessLabel = guessLabels[i]
+            let guessIcon = guessIcons[i]
 
             switch guessState {
             case .Empty:
@@ -154,12 +169,20 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
                 guessLabel.text = round.guesses[i] as? String
                 guessLabel.textColor = UIColor.grayColor()
                 guessLabel.hidden = false
+                guessIcon.image = UIImage(named: "MarkX")
+                guessIcon.hidden = false
             case .Correct:
                 guessLabel.text = round.guesses[i] as? String
                 guessLabel.textColor = UIColor.blackColor()
                 guessLabel.hidden = false
-            case .WavelengthPending:
+                guessIcon.image = UIImage(named: "MarkCheck")
+                guessIcon.hidden = false
                 wordGuessField.hidden = true
+                wordLabel.textColor = UIColor.blackColor()
+                wordLabel.hidden = false
+                wordIcon.image = UIImage(named: "MarkCheck")
+                wordIcon.hidden = false
+            case .WavelengthPending:
                 clueLabel.text = getPlaceholderTextForClue(round.clues[i] as String)
                 wavelengthGuessFields[i - 1].hidden = false
                 wavelengthGuessFields[i - 1].becomeFirstResponder()
@@ -182,7 +205,13 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
         if guessStates.last != Round.GuessState.Empty && guessStates.last != Round.GuessState.Pending && guessStates.last != Round.GuessState.WavelengthPending {
             view.endEditing(true)
-            wordGuessField.hidden = true
+            if wordLabel.hidden {
+                wordGuessField.hidden = true
+                wordLabel.textColor = UIColor.grayColor()
+                wordLabel.hidden = false
+                wordIcon.image = UIImage(named: "MarkX")
+                wordIcon.hidden = false
+            }
             doneButton.hidden = false
         }
     }
