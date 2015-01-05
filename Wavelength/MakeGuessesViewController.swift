@@ -238,7 +238,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     func getPlaceholderTextForClue(clue: String) -> String {
         var ret = ""
         for char in clue {
-            ret += "_ "
+            ret += "_"
         }
         return ret
     }
