@@ -58,8 +58,11 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
                     }
 
                     if self.currentRound.wereCluesGiven() {
-                        // TODO(rajeev): show replay view if prevRound was not replayed yet
-                        self.showMakeGuessesView()
+                        if !self.prevRound.replayed.boolValue {
+                            self.showPrevRoundReplay()
+                        } else {
+                            self.showMakeGuessesView()
+                        }
                     } else {
                         assert(!self.prevRound.replayed.boolValue, "previous round must not have been replayed if clues need to be given")
                         self.showGiveCluesView()
@@ -101,6 +104,22 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
         }
     }
 
+    func replayCancelled(sender: AnyObject!) {
+        delegate?.gameTurnCancelled(self, game: game)
+    }
+
+    func replayDone(sender: AnyObject!) {
+        removeChildViewControllers()
+        prevRound.replayed = true
+        prevRound.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+            if error == nil {
+                self.showMakeGuessesView()
+            } else {
+                Helpers.showNetworkErrorDialogFromViewController(self)
+            }
+        }
+    }
+
     // MARK: GiveCluesDelegate
 
     func giveCluesCancelled(sender: AnyObject!) {
@@ -113,10 +132,22 @@ class GameViewController: UIViewController, MakeGuessesDelegate, GiveCluesDelega
 
     // MARK: helpers
 
+    func showPrevRoundReplay() {
+        let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("MakeGuessesViewController") as MakeGuessesViewController
+        vc.game = game
+        vc.round = prevRound
+        vc.isReplay = true
+        vc.delegate = self
+        addChildViewController(vc)
+        view.addSubview(vc.view)
+        vc.didMoveToParentViewController(self)
+    }
+
     func showMakeGuessesView() {
         let vc = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("MakeGuessesViewController") as MakeGuessesViewController
         vc.game = game
         vc.round = currentRound
+        vc.isReplay = false
         vc.delegate = self
         addChildViewController(vc)
         view.addSubview(vc.view)

@@ -9,6 +9,8 @@
 protocol MakeGuessesDelegate {
     func makeGuessesCancelled(sender: AnyObject!)
     func makeGuessesDone(sender: AnyObject!)
+    func replayCancelled(sender: AnyObject!)
+    func replayDone(sender: AnyObject!)
 }
 
 class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
@@ -43,6 +45,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
     var game: Game!
     var round: Round!
+    var isReplay: Bool!
     var delegate: MakeGuessesDelegate?
 
     var clueLabels: [UILabel]!
@@ -65,10 +68,19 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
         wavelengthGuessFields = [wavelength2GuessField, wavelength3GuessField, wavelength4GuessField]
         wavelengthBackgrounds = [wavelength2Background, wavelength3Background, wavelength4Background]
 
-        let partnerFirstName = game.getPartnerFirstName(PFUser.currentUser()).uppercaseString
-        descriptionLabel.text = "GUESS \(partnerFirstName)'S WORD"
-        partnerProfilePictureView.profileID = game.getPartnerFbId(PFUser.currentUser())
-        userProfilePictureView.profileID = PFUser.currentUser().objectForKey("fbId") as String
+        if isReplay! {
+            let firstName = PFUser.currentUser().objectForKey("firstName").uppercaseString
+            descriptionLabel.text = "GUESS \(firstName)'S WORD"
+            partnerProfilePictureView.profileID = PFUser.currentUser().objectForKey("fbId") as String
+            userProfilePictureView.profileID = game.getPartnerFbId(PFUser.currentUser())
+            showReplayBanner()
+        } else {
+            let partnerFirstName = game.getPartnerFirstName(PFUser.currentUser()).uppercaseString
+            descriptionLabel.text = "GUESS \(partnerFirstName)'S WORD"
+            partnerProfilePictureView.profileID = game.getPartnerFbId(PFUser.currentUser())
+            userProfilePictureView.profileID = PFUser.currentUser().objectForKey("fbId") as String
+        }
+
         wordLabel.text = round.word
 
         wordGuessField.delegate = self
@@ -109,11 +121,19 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     // MARK: event handlers
 
     @IBAction func onBackButtonTap(sender: AnyObject) {
-        delegate?.makeGuessesCancelled(self)
+        if isReplay! {
+            delegate?.replayCancelled(self)
+        } else {
+            delegate?.makeGuessesCancelled(self)
+        }
     }
 
     @IBAction func onDoneButtonTap(sender: AnyObject) {
-        delegate?.makeGuessesDone(self)
+        if isReplay! {
+            delegate?.replayDone(self)
+        } else {
+            delegate?.makeGuessesDone(self)
+        }
     }
 
     func keyboardWasShown(aNotification: NSNotification) {
@@ -247,6 +267,22 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
                 container.removeFromSuperview()
             })
         }
+    }
+
+    func showReplayBanner() {
+        let background = UIImage(named: "WavelengthToast")!
+        let container: UIView = UIView(frame: CGRectMake((view.frame.width - view.frame.width / 4) - background.size.width / 2, view.frame.width / 4 / sqrt(3) - background.size.height / 2, background.size.width, background.size.height))
+        container.addSubview(UIImageView(image: background))
+
+        let label = UILabel(frame: container.bounds)
+        label.font = UIFont(name: "Montserrat-Bold", size: 32)
+        label.text = "PLAYBACK"
+        label.textAlignment = NSTextAlignment.Center
+        container.addSubview(label)
+
+        view.addSubview(container)
+
+        container.transform = CGAffineTransformMakeRotation(CGFloat(M_PI / 6))
     }
 
     func animateSineWaveForCorrectAnswer() {
