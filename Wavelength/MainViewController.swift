@@ -9,6 +9,7 @@
 class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GameDelegate, MenuDelegate, FBFriendPickerDelegate {
 
     @IBOutlet weak var gamesCollectionView: UICollectionView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 
     var actionableGames: [Game]!
     var waitingGames: [Game]!
@@ -23,6 +24,16 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         gamesCollectionView.delegate = self
 
         reloadGames()
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -218,9 +229,16 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
 
+    // MARK: event handlers
+
+    func appDidBecomeActive(aNotification: NSNotification) {
+        reloadGames()
+    }
+
     // MARK: helpers
 
     func reloadGames() {
+        loadingIndicator.startAnimating()
         Game.getGamesForUser(PFUser.currentUser(), block: { (actionableGames, waitingGames, error) -> Void in
             if error == nil {
                 self.actionableGames = actionableGames
@@ -233,6 +251,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
             } else {
                 Helpers.showNetworkErrorDialogFromViewController(self)
             }
+
+            self.loadingIndicator.stopAnimating()
         })
     }
 

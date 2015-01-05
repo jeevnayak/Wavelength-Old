@@ -302,19 +302,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TURN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64w-7s-Hdd">
-                                            <rect key="frame" x="15" y="6" width="30" height="13"/>
+                                            <rect key="frame" x="15" y="6" width="29.5" height="12.5"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT STREAK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQt-e1-mAh">
-                                            <rect key="frame" x="401" y="6" width="94" height="13"/>
+                                            <rect key="frame" x="401" y="6" width="94" height="12.5"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEVEL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ops-qc-W8v">
-                                            <rect key="frame" x="523" y="6" width="32" height="13"/>
+                                            <rect key="frame" x="523" y="6" width="31.5" height="12.5"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -335,6 +335,9 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ALh-No-aba">
+                                <rect key="frame" x="290" y="330" width="20" height="20"/>
+                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoSmall" translatesAutoresizingMaskIntoConstraints="NO" id="1d5-VU-3X6">
                                 <rect key="frame" x="210" y="42" width="180" height="16"/>
                             </imageView>
@@ -347,6 +350,7 @@
                             <constraint firstItem="qh6-gM-Pcp" firstAttribute="top" secondItem="yAP-ll-ZZa" secondAttribute="top" id="9SJ-R3-zf8"/>
                             <constraint firstItem="FfW-P3-V4H" firstAttribute="top" secondItem="ZqA-Ob-8EG" secondAttribute="bottom" constant="10" id="AKy-K9-iPH"/>
                             <constraint firstItem="FfW-P3-V4H" firstAttribute="leading" secondItem="qh6-gM-Pcp" secondAttribute="leading" id="Ueq-e7-MoS"/>
+                            <constraint firstItem="HhU-z1-Nlv" firstAttribute="centerX" secondItem="ALh-No-aba" secondAttribute="centerX" id="Vb7-jC-sHD"/>
                             <constraint firstItem="1d5-VU-3X6" firstAttribute="bottom" secondItem="FfW-P3-V4H" secondAttribute="bottom" constant="-2" id="XFN-K3-IUq"/>
                             <constraint firstItem="HhU-z1-Nlv" firstAttribute="top" secondItem="ZqA-Ob-8EG" secondAttribute="bottom" constant="60" id="cHY-Sw-MyM"/>
                             <constraint firstItem="yAP-ll-ZZa" firstAttribute="trailing" secondItem="jOO-dk-1FA" secondAttribute="trailing" id="fJF-3Y-B1t"/>
@@ -354,11 +358,13 @@
                             <constraint firstItem="FfW-P3-V4H" firstAttribute="leading" secondItem="RsG-RN-Ang" secondAttribute="leading" constant="15" id="iab-bX-kyf"/>
                             <constraint firstItem="qh6-gM-Pcp" firstAttribute="top" secondItem="FfW-P3-V4H" secondAttribute="bottom" constant="3" id="mEq-cV-oOV"/>
                             <constraint firstAttribute="centerX" secondItem="1d5-VU-3X6" secondAttribute="centerX" id="s8i-dI-oQ9"/>
+                            <constraint firstItem="HhU-z1-Nlv" firstAttribute="centerY" secondItem="ALh-No-aba" secondAttribute="centerY" id="xhN-XI-Mfd"/>
                             <constraint firstItem="y1e-4H-7pB" firstAttribute="top" secondItem="HhU-z1-Nlv" secondAttribute="bottom" id="y2A-Z9-rwO"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="gamesCollectionView" destination="HhU-z1-Nlv" id="jrW-vO-S8A"/>
+                        <outlet property="loadingIndicator" destination="ALh-No-aba" id="YgJ-7x-6MS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hk1-fA-RJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
