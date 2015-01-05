@@ -83,7 +83,6 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let guessResult = round.submitGuess(textField.text)
-        // TODO(rajeev): figure out when to toast and what the text should be
         switch guessResult {
         case .Empty:
             let alert = UIAlertController(title: "Invalid", message: "You must make a guess", preferredStyle: UIAlertControllerStyle.Alert)
@@ -91,12 +90,12 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
             presentViewController(alert, animated: true, completion: nil)
             return false
         case .Incorrect:
-            showWavelengthToastWithText("INCORRECT")
+            animateSineWaveForIncorrectAnswer()
         case .Correct:
             showWavelengthToastWithText("NAILED IT")
             animateSineWaveForCorrectAnswer()
         case .WavelengthIncorrect:
-            showWavelengthToastWithText("INCORRECT")
+            animateSineWaveForIncorrectAnswer()
         case .WavelengthCorrect:
             showWavelengthToastWithText("WAVELENGTH")
             animateSineWaveForCorrectAnswer()
@@ -255,5 +254,12 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
         let speed = waveView.kDefaultSpeed / 2
         let color = UIColor.lightBlueColor()
         waveView.transformSineWaveWithTimeCheckpoints([CFTimeInterval(1), CFTimeInterval(1.5), CFTimeInterval(2.5)], minBarHeightCheckpoints: nil, amplitudeCheckpoints: [amplitude, amplitude, waveView.kDefaultAmplitude], frequencyCheckpoints: nil, speedCheckpoints: [speed, speed, waveView.kDefaultSpeed], colorCheckpoints: [color, color, waveView.kDefaultColor])
+    }
+
+    func animateSineWaveForIncorrectAnswer() {
+        let minBarHeight = waveView.kDefaultAmplitude / 2
+        let amplitude = CGFloat(0)
+        let color = UIColor.lightRedColor()
+        waveView.transformSineWaveWithTimeCheckpoints([CFTimeInterval(1), CFTimeInterval(2.5)], minBarHeightCheckpoints: [minBarHeight, waveView.kDefaultMinBarHeight], amplitudeCheckpoints: [amplitude, waveView.kDefaultAmplitude], frequencyCheckpoints: nil, speedCheckpoints: nil, colorCheckpoints: [color, waveView.kDefaultColor])
     }
 }
