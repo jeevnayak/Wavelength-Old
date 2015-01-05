@@ -224,7 +224,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     func animateSineWaveForCorrectAnswer() {
         let amplitude = waveView.kDefaultAmplitude * 2
         let speed = waveView.kDefaultSpeed / 2
-        let color = UIColor.blueColor()
+        let color = UIColor.lightBlueColor()
         waveView.transformSineWaveWithTimeCheckpoints([CFTimeInterval(1), CFTimeInterval(1.5), CFTimeInterval(2.5)], minBarHeightCheckpoints: nil, amplitudeCheckpoints: [amplitude, amplitude, waveView.kDefaultAmplitude], frequencyCheckpoints: nil, speedCheckpoints: [speed, speed, waveView.kDefaultSpeed], colorCheckpoints: [color, color, waveView.kDefaultColor])
     }
 }
