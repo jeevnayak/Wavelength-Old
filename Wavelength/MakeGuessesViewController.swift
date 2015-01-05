@@ -167,7 +167,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
                 guessLabel.text = round.guesses[i] as? String
                 guessLabel.textColor = UIColor.grayColor()
                 guessLabel.hidden = false
-                wavelengthBackgrounds[i - 1].backgroundColor = UIColor.redColor()
+                wavelengthBackgrounds[i - 1].backgroundColor = UIColor.lightRedColor()
                 wavelengthBackgrounds[i - 1].hidden = false
             case .WavelengthCorrect:
                 guessLabel.text = round.guesses[i] as? String
