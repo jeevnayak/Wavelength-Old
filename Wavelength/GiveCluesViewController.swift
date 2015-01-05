@@ -13,6 +13,7 @@ protocol GiveCluesDelegate {
 
 class GiveCluesViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var clue1Field: UITextField!
@@ -28,6 +29,9 @@ class GiveCluesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
 
         reloadData()
     }
@@ -65,6 +69,16 @@ class GiveCluesViewController: UIViewController {
                 }
             })
         }
+    }
+
+    func keyboardWasShown(aNotification: NSNotification) {
+        let info = aNotification.userInfo!
+        let kbSize = info[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().size
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, kbSize.height, 0)
+    }
+
+    func keyboardWillHide(aNotification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsetsZero
     }
 
     // MARK: helpers
