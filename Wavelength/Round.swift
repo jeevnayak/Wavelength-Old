@@ -69,6 +69,23 @@ class Round: PFObject, PFSubclassing {
 
     func replaceWordForGame(game: Game, block: (error: NSError?) -> Void) {
         word = Round.generateWordForGame(game)
+        // TODO(rajeev): modifying the round and game together should be atomic
+        saveInBackgroundWithBlock { (succeeded, error) -> Void in
+            if error == nil {
+                var newWords = [] as [String]
+                for w in game.words {
+                    newWords.append(w as String)
+                }
+                newWords.removeLast()
+                newWords.append(self.word)
+                game.words = newWords
+                game.saveInBackgroundWithBlock({ (succeeded, error2) -> Void in
+                    block(error: error2)
+                })
+            } else {
+                block(error: error)
+            }
+        }
         saveInBackgroundWithBlock { (succeeded, error) -> Void in
             block(error: error)
         }
