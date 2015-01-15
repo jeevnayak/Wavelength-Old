@@ -200,6 +200,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
                 game.currentRoundIndex = 0
                 game.currentPlayer = PFUser.currentUser()
                 game.currentStreak = 0
+                game.words = []
                 // TODO(rajeev): modifying the round and game together should be atomic
                 game.saveInBackgroundWithBlock { (succeeded, error) -> Void in
                     if error == nil {

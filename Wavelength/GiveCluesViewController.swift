@@ -50,13 +50,31 @@ class GiveCluesViewController: UIViewController {
         delegate?.giveCluesCancelled(self)
     }
 
+    @IBAction func onReplaceWordButtonTap(sender: AnyObject) {
+        round.replaceWordForGame(game, block: { (error) -> Void in
+            if error == nil {
+                self.reloadData()
+            } else {
+                Helpers.showNetworkErrorDialogFromViewController(self)
+            }
+        })
+    }
+
     @IBAction func onSubmitButtonTap(sender: AnyObject) {
         let clue1 = clue1Field.text
         let clue2 = clue2Field.text
         let clue3 = clue3Field.text
         let clue4 = clue4Field.text
         if clue1.isEmpty || clue2.isEmpty || clue3.isEmpty || clue4.isEmpty {
-            let alert = UIAlertController(title: "Invalid", message: "You must fill out all 4 words", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Invalid", message: "You must fill out all 4 clues", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        } else if isClueTooLong(clue1) || isClueTooLong(clue2) || isClueTooLong(clue3) || isClueTooLong(clue4)  {
+            let alert = UIAlertController(title: "Invalid", message: "Clues must be 16 characters or less", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        } else if isClueMultiWord(clue1) || isClueMultiWord(clue2) || isClueMultiWord(clue3) || isClueMultiWord(clue4) {
+            let alert = UIAlertController(title: "Invalid", message: "Clues must be single words", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
         } else {
@@ -95,5 +113,14 @@ class GiveCluesViewController: UIViewController {
         let partnerFirstName = game.getPartnerFirstName(PFUser.currentUser()).uppercaseString
         descriptionLabel.text = "PICK CLUES SO \(partnerFirstName)\nWILL GUESS THE WORD"
         wordLabel.text = round.word
+    }
+
+    func isClueTooLong(clue: String) -> Bool {
+        return countElements(clue) > 16
+    }
+
+    func isClueMultiWord(clue: String) -> Bool {
+        let whitespace = NSCharacterSet.whitespaceCharacterSet()
+        return (clue.rangeOfCharacterFromSet(whitespace) != nil)
     }
 }
