@@ -38,6 +38,9 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var wavelength2GuessField: UITextField!
     @IBOutlet weak var wavelength3GuessField: UITextField!
     @IBOutlet weak var wavelength4GuessField: UITextField!
+    @IBOutlet weak var wavelength2Blank: UILabel!
+    @IBOutlet weak var wavelength3Blank: UILabel!
+    @IBOutlet weak var wavelength4Blank: UILabel!
     @IBOutlet weak var wavelength2Background: UIView!
     @IBOutlet weak var wavelength3Background: UIView!
     @IBOutlet weak var wavelength4Background: UIView!
@@ -52,6 +55,7 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
     var guessLabels: [UILabel]!
     var guessIcons: [UIImageView]!
     var wavelengthGuessFields: [UITextField]!
+    var wavelengthBlanks: [UILabel]!
     var wavelengthBackgrounds: [UIView]!
 
     // MARK: UIViewController
@@ -63,7 +67,18 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
         guessLabels = [guess1Label, guess2Label, guess3Label, guess4Label]
         guessIcons = [guess1Icon, guess2Icon, guess3Icon, guess4Icon]
         wavelengthGuessFields = [wavelength2GuessField, wavelength3GuessField, wavelength4GuessField]
+        wavelengthBlanks = [wavelength2Blank, wavelength3Blank, wavelength4Blank]
         wavelengthBackgrounds = [wavelength2Background, wavelength3Background, wavelength4Background]
+
+        for clueLabel in clueLabels {
+            clueLabel.adjustsFontSizeToFitWidth = true
+        }
+        for guessLabel in guessLabels {
+            guessLabel.adjustsFontSizeToFitWidth = true
+        }
+        for wavelengthBlank in wavelengthBlanks {
+            wavelengthBlank.adjustsFontSizeToFitWidth = true
+        }
 
         if isReplay! {
             let firstName = PFUser.currentUser().objectForKey("firstName").uppercaseString
@@ -175,6 +190,9 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
         for wavelengthGuessField in wavelengthGuessFields {
             wavelengthGuessField.hidden = true
         }
+        for wavelengthBlank in wavelengthBlanks {
+            wavelengthBlank.hidden = true
+        }
         for wavelengthBackground in wavelengthBackgrounds {
             wavelengthBackground.hidden = true
         }
@@ -211,9 +229,12 @@ class MakeGuessesViewController: UIViewController, UITextFieldDelegate {
                 wordIcon.image = UIImage(named: "MarkCheck")
                 wordIcon.hidden = false
             case .WavelengthPending:
-                clueLabel.text = getPlaceholderTextForClue(round.clues[i] as String)
+                let blanks = getPlaceholderTextForClue(round.clues[i] as String)
+                clueLabel.text = blanks
                 wavelengthGuessFields[i - 1].hidden = false
                 wavelengthGuessFields[i - 1].becomeFirstResponder()
+                wavelengthBlanks[i - 1].text = blanks
+                wavelengthBlanks[i - 1].hidden = false
             case .WavelengthIncorrect:
                 guessLabel.text = round.guesses[i] as? String
                 guessLabel.textColor = UIColor.grayColor()
