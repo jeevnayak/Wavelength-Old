@@ -555,11 +555,13 @@
 					/Users/seanyliu/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Wavelength/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "81535d94-6ec0-4d7a-ad21-7902f029a860";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wavelength/Wavelength-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -575,10 +577,12 @@
 					/Users/seanyliu/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Wavelength/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "81535d94-6ec0-4d7a-ad21-7902f029a860";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wavelength/Wavelength-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
